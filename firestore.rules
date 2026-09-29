@@ -2,14 +2,11 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    /* الافتراضي: رفض شامل — لا استثناء سوى إنشاء طلب صالح */
-    match /{document=**} {
-      allow read, write: if false;
-    }
+    match /{document=**} { allow read, write: if false; }
 
     match /service_requests/{id} {
       allow read, update, delete: if false;   // تدير الطلبات من Console فقط
-      allow create: if isValidRequest();
+      allow create: if isValidRequest();      // الكتابة الوحيدة المسموحة — مشروطة بالشكل
     }
 
     function isValidRequest() {
