@@ -181,7 +181,7 @@ const SITE_CONFIG = {
               ar: "مدونة صحية على بلوجر — إعداد كامل: تصميم، أقسام، صفحات قانونية، وتهيئة لمتطلبات AdSense." },
       services: { en: "Blogger setup, legal pages, AdSense prep", ar: "إعداد بلوجر، صفحات قانونية، تهيئة AdSense" },
       tech: ["Blogger"],
-      link: "https://sihatokafirst.blogspot.com/", image: "assets/images/projects/sihatoka.webp", caseStudy: null },
+      link: "https://sihatokafirst.blogspot.com/", image: "assets/images/projects/sihatoka.png", caseStudy: null },
 
     { id: "rawa4all", category: "blogs", year: "",
       title: { en: "Rawa 4 All", ar: "روى 4 أول" },   // ⚠ صحّح الاسم العربي
