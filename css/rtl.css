@@ -1,0 +1,22 @@
+/* ============================================================
+   Abdallah Abas — RTL refinements
+   main.css already uses logical properties; this file handles
+   what direction alone cannot fix.
+   ============================================================ */
+
+[dir="rtl"]{
+  --font-head:"IBM Plex Sans Arabic",sans-serif;
+  --font-body:"IBM Plex Sans Arabic",sans-serif;
+}
+[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3,[dir="rtl"] h4{letter-spacing:0;font-weight:700}
+[dir="rtl"] .kicker,[dir="rtl"] .mono,[dir="rtl"] .stat-num,[dir="rtl"] .service-num,
+[dir="rtl"] .card-meta .cat,[dir="rtl"] .brand-word{letter-spacing:0}
+/* Latin brand wordmark reads best left-aligned inside RTL */
+[dir="rtl"] .brand{flex-direction:row}
+/* arrows that imply forward motion flip */
+[dir="rtl"] .icon-flip{transform:scaleX(-1)}
+[dir="rtl"] .btn-text:hover .icon-flip{transform:scaleX(-1) translateX(2px)}
+/* response text keeps phone numbers / emails LTR */
+[dir="rtl"] .method-val,[dir="rtl"] .summary-box,[dir="rtl"] .num{font-family:var(--font-mono)}
+[dir="rtl"] .service-cell::before{inset-inline-start:auto;inset-inline-end:0}
+[dir="rtl"] .console-foot{text-align:start}
