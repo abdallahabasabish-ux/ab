@@ -45,7 +45,7 @@ const SITE_CONFIG = {
   },
 
   /* --- Stats: أرقام حقيقية فقط (0 = تظهر "—") --------------- */
-  stats: { projects: 0, certificates: 0, years: 0, articles: 0 },
+  stats: { projects: 63, certificates: 10, years: 11, articles: 722 },
 
   /* --- Expertise -------------------------------------------- */
   expertise: [
