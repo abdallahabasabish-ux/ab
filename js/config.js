@@ -1,7 +1,6 @@
 /* ============================================================
    Abdallah Abas — central configuration
    Everything editable lives here. Bilingual fields use { en, ar }.
-   Replace every value marked PLACEHOLDER before going live.
    ============================================================ */
 "use strict";
 
@@ -9,45 +8,57 @@ const SITE_CONFIG = {
 
   /* --- Brand ------------------------------------------------ */
   brandName: "Abdallah Abas",
-  siteUrl: "https://abdallahabas.github.io",        // PLACEHOLDER — your domain / GitHub Pages URL
-  logo: { src: "" },                                 // PLACEHOLDER — e.g. "assets/images/logo.svg" (empty = built-in monogram)
+  siteUrl: "https://abdallahabas.com",               // الرابط الرسمي
+  logo: { src: "" },                                 // e.g. "assets/images/logo.svg" (فارغ = مونوغرام مدمج)
 
   /* --- Destinations ----------------------------------------- */
-  blogUrl: "",                                       // PLACEHOLDER — e.g. "https://blog.abdallahabas.com"
-  cvUrl: "",                                         // PLACEHOLDER — e.g. "assets/abdallah-abas-cv.pdf"
+  blogUrl: "https://blog.abdallahabas.com",          // رابط المدونة
+  cvUrl: "",                                         // e.g. "assets/abdallah-abas-cv.pdf"
 
-  /* --- Direct contact (PLACEHOLDERS — leave "" to hide) ----- */
+  /* --- Direct contact (اتركه "" ليختفى تلقائيًا) ------------- */
   email: "",                                         // e.g. "contact@abdallahabas.com"
-  whatsapp: "",                                      // digits only, international format, e.g. "249912345678"
+  whatsapp: "",                                      // أرقام فقط بصيغة دولية، e.g. "249912345678"
   social: {
     facebook: "", linkedin: "", instagram: "",
     telegram: "", github: ""
   },
 
-  /* --- Service request form --------------------------------- */
-  form: {
-    mode: "whatsapp",        // "whatsapp" | "email" | "endpoint"
-    endpoint: ""             // PLACEHOLDER — POST URL when mode = "endpoint" (e.g. Formspree / your backend)
+  /* --- Firebase (analytics + service requests) -------------- */
+  firebase: {
+    projectId: "abdallahsst",
+    apiKey: "AIzaSyDg-oSbA_UdlzMS8HZGE0pHtr_zWg5rrXY",
+    appId: "1:1011946194938:web:6c71030a6da4074b68c643",
+    measurementId: "G-P8VBBK21WK",
+    authDomain: "abdallahsst.firebaseapp.com",
+    collection: "service_requests"                   // مجموعة Firestore لطلبات الخدمة
   },
 
-  /* --- Stats: ONLY real numbers (0 = shown as "—") ---------- */
+  /* --- Service request form --------------------------------- */
+  form: {
+    mode: "firestore",        // "firestore" | "whatsapp" | "email" | "endpoint"
+    endpoint: ""              // يُستخدم فقط عندما mode = "endpoint"
+  },
+
+  /* --- Stats: أرقام حقيقية فقط (0 = تظهر "—") --------------- */
   stats: { projects: 0, certificates: 0, years: 0, articles: 0 },
 
   /* --- Expertise -------------------------------------------- */
   expertise: [
-    { en: "Website development",    ar: "تطوير المواقع" },
-    { en: "Technical SEO",          ar: "SEO التقني" },
-    { en: "On-page SEO",            ar: "التحسين المضموني" },
-    { en: "AdSense readiness",      ar: "تهيئة AdSense" },
-    { en: "Blogger",                ar: "بلوجر" },
-    { en: "WordPress",              ar: "ووردبريس" },
-    { en: "Google Search Console",  ar: "Google Search Console" },
-    { en: "SEO content",            ar: "محتوى SEO" },
-    { en: "Website audits",         ar: "فحص المواقع" },
+    { en: "Website development",      ar: "تطوير المواقع" },
+    { en: "Technical SEO",            ar: "SEO التقني" },
+    { en: "On-page SEO",              ar: "التحسين المضموني" },
+    { en: "AdSense readiness",        ar: "تهيئة AdSense" },
+    { en: "Blogger",                  ar: "بلوجر" },
+    { en: "WordPress",                ar: "ووردبريس" },
+    { en: "Google Search Console",    ar: "Google Search Console" },
+    { en: "SEO content",              ar: "محتوى SEO" },
+    { en: "Website audits",           ar: "فحص المواقع" },
     { en: "Performance optimization", ar: "تحسين الأداء" }
   ],
 
   /* --- Services --------------------------------------------- */
+  /* ملاحظة: معرّفات id هنا يجب أن تبقى مطابقة لقائمة enum
+     في firestore.rules — أي إضافة خدمة تتطلب تحديث القواعد.   */
   services: [
     { id: "web-dev", icon: "code",
       name: { en: "Website Development", ar: "تطوير المواقع" },
@@ -106,8 +117,8 @@ const SITE_CONFIG = {
   ],
 
   /* --- Portfolio ---------------------------------------------
-     SAMPLE entries below are clearly marked (sample: true →
-     shows a "Sample" badge). Replace them with real projects. */
+     العناصر أدناه نماذج موسومة بـ sample:true (تظهر شارة "نموذج").
+     استبدلها بمشاريع حقيقية واحذف الخاصية sample.             */
   portfolio: [
     { id: "p1", sample: true, category: "websites", year: "2025",
       title: { en: "Sample — Business Website", ar: "نموذج — موقع تعريفي" },
@@ -136,25 +147,25 @@ const SITE_CONFIG = {
   ],
   portfolioCategories: ["websites", "seo", "blogs", "platforms", "education", "ecommerce", "other"],
 
-  /* --- Certificates: NEVER invent. Add real ones only. ------ */
+  /* --- Certificates: لا تُخترع أبدًا. أضف الحقيقية فقط. ----- */
   certificates: [
     /* { id: "c1", title: {en:"…", ar:"…"}, org: {en:"…", ar:"…"},
        date: "2025-06-01", credentialId: "…", verifyUrl: "…",
        image: "assets/certificates/c1.jpg" } */
   ],
 
-  /* --- Achievements: NEVER invent. Add real ones only. ------ */
+  /* --- Achievements: لا تُخترع أبدًا. أضف الحقيقية فقط. ----- */
   achievements: [
     /* { id:"a1", category:"writing", year:"2025",
        title:{en:"…",ar:"…"}, org:{en:"…",ar:"…"}, desc:{en:"…",ar:"…"} } */
   ],
 
-  /* --- Articles (gateway to the Blogger subdomain) ---------- */
+  /* --- Articles (بوابة نحو المدونة على blog.abdallahabas.com) - */
   articles: [
     { id: "ar1", sample: true, category: "seo", date: "2025-06-12", slug: "/sample-seo-basics",
       title: { en: "Sample — SEO Basics for New Blogs", ar: "نموذج — أساسيات SEO للمدونات الجديدة" },
-      desc:  { en: "Sample entry showing how article cards link to the blog. Set blogUrl in js/config.js.",
-               ar: "عنصر توضيحي يشرح ارتباط بطاقات المقالات بالمدوّنة. عيّن blogUrl في js/config.js." } },
+      desc:  { en: "Sample entry showing how article cards link to the blog. Replace with real articles once published.",
+               ar: "عنصر توضيحي يشرح ارتباط بطاقات المقالات بالمدوّنة. استبدله بمقالات حقيقية بعد نشرها." } },
     { id: "ar2", sample: true, category: "websites", date: "2025-05-28", slug: "/sample-adsense-checklist",
       title: { en: "Sample — An AdSense Readiness Checklist", ar: "نموذج — قائمة فحص تهيئة AdSense" },
       desc:  { en: "Sample entry. Replace with real articles once the blog is live.",
@@ -166,21 +177,6 @@ const SITE_CONFIG = {
   ],
   articleCategories: { seo: "SEO", websites: "Websites", blogs: "Blogs", content: "Content", other: "Other" },
 
-  /* --- Testimonials: NEVER invent. Leave empty until real. --- */
+  /* --- Testimonials: لا تُخترع أبدًا. فارغة حتى توفر حقيقية. - */
   testimonials: []
 };
-  /* --- Firebase (analytics + service requests) -------------- */
-  firebase: {
-    projectId: "abdallahsst",
-    apiKey: "AIzaSyDg-oSbA_UdlzMS8HZGE0pHtr_zWg5rrXY",
-    appId: "1:1011946194938:web:6c71030a6da4074b68c643",
-    measurementId: "G-P8VBBK21WK",
-    authDomain: "abdallahsst.firebaseapp.com",
-    collection: "service_requests"          // Firestore collection for requests
-  },
-
-  /* --- Service request form --------------------------------- */
-  form: {
-    mode: "firestore",        // "firestore" | "whatsapp" | "email" | "endpoint"
-    endpoint: ""              // used only when mode = "endpoint"
-  },
