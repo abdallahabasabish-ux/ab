@@ -141,7 +141,7 @@ const SITE_CONFIG = {
               ar: "مدونة محتوى في مجال الربح من الإنترنت — بناء المدونة وتهيئتها وفق أفضل الممارسات المنشورة من Google." },
       services: { en: "Blog build, AdSense-readiness prep, SEO", ar: "بناء المدونة، تهيئة AdSense، SEO" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.airbah.com/", image: "assets/images/projects/airbah.webp", caseStudy: null },
+      link: "https://www.airbah.com/", image: "assets/images/projects/airbah.svg", caseStudy: null },
 
     { id: "albedaei", category: "blogs", year: "",
       title: { en: "Albedaei", ar: "البيدعي" },
