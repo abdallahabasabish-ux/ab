@@ -1,12 +1,14 @@
 /* ============================================================
    Abdallah Abas — core engine: chrome injection, i18n, nav,
    reveal animations, counters, hero canvas, dialogs, toast.
-   v2 — bugfix release:
-   · t()/L()/LL() never use `this` (destructuring them off AA
-     made `this` undefined in strict mode → the LANG crash)
+   v2.1 — merged fixes:
+   · t()/L()/LL() never use `this` (destructuring off AA made
+     `this` undefined in strict mode → the LANG crash)
    · esc() exposed on AA (modules destructure `esc: E`)
-   · language detected BEFORE chrome is rendered
-   · localStorage guarded; renderer failures isolated
+   · language detected BEFORE chrome renders
+   · localStorage guarded; boot guard for SITE_CONFIG
+   · data-i18n on the "Request a Service" header/mobile buttons
+   · aria-labels on navs switch language via data-i18n-attr
    innerHTML is used ONLY with trusted static templates and
    esc()-escaped data — never with user input.
    ============================================================ */
@@ -133,10 +135,10 @@ function renderChrome() {
   header.className = "site-header"; header.id = "siteHeader";
   header.innerHTML = `<div class="container header-in">
     <a class="brand" href="index.html">${brandHTML()}</a>
-    <nav class="main-nav" aria-label="${t("a11y.mainNav")}">${navLinks("nav-list")}</nav>
+    <nav class="main-nav" data-i18n-attr="aria-label:a11y.mainNav" aria-label="${t("a11y.mainNav")}">${navLinks("nav-list")}</nav>
     <div class="header-actions">
       ${langToggleHTML()}
-      <button type="button" class="btn btn-solid btn-s header-cta" data-request>${esc(t("cta.request"))}</button>
+      <button type="button" class="btn btn-solid btn-s header-cta" data-request data-i18n="cta.request">${esc(t("cta.request"))}</button>
       <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false"
         aria-controls="mobilePanel" aria-label="${t("a11y.openMenu")}">${icon("menu", "i-menu")}${icon("close", "i-close")}</button>
     </div></div>`;
@@ -149,8 +151,9 @@ function renderChrome() {
   const panel = document.createElement("nav");
   panel.className = "mobile-panel"; panel.id = "mobilePanel";
   panel.setAttribute("aria-label", t("a11y.mobileNav"));
+  panel.setAttribute("data-i18n-attr", "aria-label:a11y.mobileNav");
   panel.innerHTML = navLinks("mobile-list") + `<div class="mobile-foot">${langToggleHTML()}
-    <button type="button" class="btn btn-solid btn-block" data-request>${esc(t("cta.request"))}</button></div>`;
+    <button type="button" class="btn btn-solid btn-block" data-request data-i18n="cta.request">${esc(t("cta.request"))}</button></div>`;
   document.body.appendChild(panel);
 
   document.body.appendChild(renderFooter());
@@ -173,7 +176,8 @@ function renderFooter() {
       <p data-i18n="footer.tagline">${t("footer.tagline")}</p>
       <div class="social-row" id="footerSocial"></div>
     </div>
-    <nav aria-label="${t("footer.navT")}"><h3 data-i18n="footer.navT">${t("footer.navT")}</h3>
+    <nav data-i18n-attr="aria-label:footer.navT" aria-label="${t("footer.navT")}">
+      <h3 data-i18n="footer.navT">${t("footer.navT")}</h3>
       ${navLinks("footer-list")}</nav>
     <div><h3 data-i18n="footer.servT">${t("footer.servT")}</h3>
       <ul class="footer-list" id="footerServices"></ul></div>
@@ -436,8 +440,23 @@ AA.certSVG = () => `
 
 /* ---- boot ------------------------------------------------------
    Order matters: detect language FIRST, then render the chrome
-   with the right strings baked in, then run the content pass.   */
+   with the right strings baked in, then run the content pass.
+   Guard: config.js is the most-edited file — if it fails to load
+   (syntax error), fail LOUDLY with a clear message instead of a
+   cryptic cascade of "undefined" errors downstream.             */
 document.addEventListener("DOMContentLoaded", () => {
+  if (typeof SITE_CONFIG === "undefined") {
+    console.error("[AA] SITE_CONFIG is undefined. Root cause: js/config.js "
+      + "failed to load or has a syntax error. Find the FIRST red error in "
+      + "this console (it names config.js and a line/character), fix it, reload.");
+    const banner = document.createElement("div");
+    banner.className = "boot-error";
+    banner.setAttribute("role", "alert");
+    banner.textContent = "Configuration error: js/config.js could not be loaded — "
+      + "خطأ في ملف الإعداد: راجع الكونسول لمعرفة السطر، أصلحه ثم أعد التحميل.";
+    document.body.prepend(banner);
+    return;
+  }
   buildSprite();
   AA.LANG = detectLang();          // 1. language before any t() call
   renderChrome();                  // 2. header/footer in the right language
