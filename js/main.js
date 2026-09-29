@@ -1,32 +1,55 @@
 /* ============================================================
    Abdallah Abas — core engine: chrome injection, i18n, nav,
    reveal animations, counters, hero canvas, dialogs, toast.
-   NOTE: innerHTML is used ONLY with trusted static templates
-   and esc()-escaped data — never with user input.
+   v2 — bugfix release:
+   · t()/L()/LL() never use `this` (destructuring them off AA
+     made `this` undefined in strict mode → the LANG crash)
+   · esc() exposed on AA (modules destructure `esc: E`)
+   · language detected BEFORE chrome is rendered
+   · localStorage guarded; renderer failures isolated
+   innerHTML is used ONLY with trusted static templates and
+   esc()-escaped data — never with user input.
    ============================================================ */
 "use strict";
 
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const esc = s => String(s ?? "").replace(/[&<>"']/g,
-  c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ---- shared namespace ------------------------------------- */
+const esc = s => String(s ?? "").replace(/[&<>"']/g,
+  c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+/* ---- shared namespace ---------------------------------------
+   t / L / LL are plain functions reading AA.LANG explicitly —
+   identical behavior however they are called.                  */
 window.AA = {
-  LANG: "en", renderers: [],
-  t(key) {
-    const get = l => key.split(".").reduce((o, k) => (o && o[k] !== undefined) ? o[k] : undefined, I18N[l]);
-    const v = get(this.LANG);
-    return typeof v === "string" ? v : (typeof get("en") === "string" ? get("en") : key);
-  },
-  L : o => o ? (typeof o === "string" ? o : (o[this.LANG] ?? o.en ?? "")) : "",
-  LL: o => Array.isArray(o) ? o : (o ? (o[this.LANG] ?? o.en ?? []) : []),
-  onRender(fn) { this.renderers.push(fn); },
-  openRequest: null
+  LANG: "en",
+  renderers: [],
+  openRequest: null,
+  onRender(fn) { AA.renderers.push(fn); }
 };
 
-const { t, L, LL, esc: E } = window.AA;
+function t(key) {
+  if (typeof I18N === "undefined") return key;      // translations.js missing → degrade, never crash
+  const pick = lang => {
+    const v = String(key).split(".")
+      .reduce((o, k) => (o && o[k] !== undefined) ? o[k] : undefined, I18N[lang]);
+    return typeof v === "string" ? v : undefined;
+  };
+  return pick(AA.LANG) ?? pick("en") ?? key;
+}
+function L(o) {
+  if (!o) return "";
+  if (typeof o === "string") return o;
+  return o[AA.LANG] ?? o.en ?? "";
+}
+function LL(o) {
+  if (Array.isArray(o)) return o;
+  if (!o) return [];
+  return o[AA.LANG] ?? o.en ?? [];
+}
+
+AA.t = t; AA.L = L; AA.LL = LL; AA.esc = esc;
 
 /* ---- icon sprite (single source of truth for all glyphs) --- */
 const STROKE = 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"';
@@ -78,12 +101,12 @@ const LOGO_SVG = `<svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"
 
 function brandHTML() {
   const mark = SITE_CONFIG.logo.src
-    ? `<img src="${esc(SITE_CONFIG.logo.src)}" alt="${esc(t("a11y.home") + " — " + SITE_CONFIG.brandName)}" width="34" height="34">`
+    ? `<img src="${esc(SITE_CONFIG.logo.src)}" alt="${esc(SITE_CONFIG.brandName)}" width="34" height="34">`
     : LOGO_SVG;
   return `${mark}<span class="brand-word">ABDALLAH&nbsp;ABAS</span><span class="brand-dot" aria-hidden="true"></span>`;
 }
 
-/* ---- chrome: header / mobile panel / footer / request dialog */
+/* ---- chrome: header / mobile panel / footer / dialog root --- */
 const NAV_ITEMS = [
   ["index.html", "nav.home"], ["about.html", "nav.about"], ["services.html", "nav.services"],
   ["portfolio.html", "nav.portfolio"], ["achievements.html", "nav.achievements"],
@@ -136,9 +159,9 @@ function renderChrome() {
   dlg.className = "overlay"; dlg.id = "dialogRoot";
   document.body.appendChild(dlg);
 
-  const toast = document.createElement("div");
-  toast.className = "toast"; toast.id = "toast"; toast.setAttribute("role", "status");
-  document.body.appendChild(toast);
+  const toastEl = document.createElement("div");
+  toastEl.className = "toast"; toastEl.id = "toast"; toastEl.setAttribute("role", "status");
+  document.body.appendChild(toastEl);
 }
 
 function renderFooter() {
@@ -153,8 +176,7 @@ function renderFooter() {
     <nav aria-label="${t("footer.navT")}"><h3 data-i18n="footer.navT">${t("footer.navT")}</h3>
       ${navLinks("footer-list")}</nav>
     <div><h3 data-i18n="footer.servT">${t("footer.servT")}</h3>
-      <ul class="footer-list">${SITE_CONFIG.services.slice(0, 5).map(s =>
-        `<li><a href="services.html">${esc(L(s.name))}</a></li>`).join("")}</ul></div>
+      <ul class="footer-list" id="footerServices"></ul></div>
     <div><h3 data-i18n="footer.contactT">${t("footer.contactT")}</h3>
       <ul class="footer-list" id="footerContact"></ul></div>
   </div>
@@ -169,14 +191,29 @@ function renderFooter() {
   return f;
 }
 
+/* Chrome strings that bake config data (service names) or
+   imperative aria-labels must refresh on language switch too.  */
+AA.onRender(() => {
+  const servList = $("#footerServices");
+  if (servList) servList.innerHTML = SITE_CONFIG.services.slice(0, 5).map(s =>
+    `<li><a href="services.html">${esc(L(s.name))}</a></li>`).join("");
+  const tg = $("#navToggle");
+  if (tg) tg.setAttribute("aria-label",
+    tg.classList.contains("open") ? t("a11y.closeMenu") : t("a11y.openMenu"));
+  $$(".lang-switch").forEach(el => el.setAttribute("aria-label", t("a11y.langSwitch")));
+});
+
 /* ---- i18n --------------------------------------------------- */
 let LANG_INIT = false;
 function detectLang() {
   const url = new URLSearchParams(location.search).get("lang");
-  const saved = localStorage.getItem("aa_lang");
   if (url === "ar" || url === "en") return url;
-  if (saved === "ar" || saved === "en") return saved;
-  const nav = (navigator.languages || [navigator.language || "en"]).some(l => l && l.toLowerCase().startsWith("ar"));
+  try {
+    const saved = localStorage.getItem("aa_lang");
+    if (saved === "ar" || saved === "en") return saved;
+  } catch (e) { /* storage blocked (private mode / file://) */ }
+  const nav = (navigator.languages || [navigator.language || "en"])
+    .some(l => l && l.toLowerCase().startsWith("ar"));
   return nav ? "ar" : "en";
 }
 function applyStatic(root = document) {
@@ -197,6 +234,9 @@ function updateMeta() {
   set('meta[property="og:title"]', m.title);       set('meta[property="og:description"]', m.desc);
   set('meta[name="twitter:title"]', m.title);      set('meta[name="twitter:description"]', m.desc);
 }
+function runRenderers() {
+  AA.renderers.forEach(fn => { try { fn(); } catch (err) { /* isolate section failures */ } });
+}
 function setLang(lang, persist = true) {
   AA.LANG = lang === "ar" ? "ar" : "en";
   const html = document.documentElement;
@@ -204,17 +244,19 @@ function setLang(lang, persist = true) {
   html.dir = AA.LANG === "ar" ? "rtl" : "ltr";
   if (persist) try { localStorage.setItem("aa_lang", AA.LANG); } catch (e) { /* private mode */ }
 
-  const fade = () => {
-    document.body.classList.add("lang-fading");
-    setTimeout(() => {
-      applyStatic();
-      AA.renderers.forEach(fn => { try { fn(); } catch (err) { /* one bad section must not kill the rest */ } });
-      updateMeta();
-      $$(".lang-btn").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === AA.LANG)));
-      document.body.classList.remove("lang-fading");
-    }, REDUCED ? 0 : 160);
+  const swap = () => {
+    applyStatic();
+    runRenderers();
+    updateMeta();
+    $$(".lang-btn").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === AA.LANG)));
   };
-  if (LANG_INIT && !REDUCED) fade(); else { LANG_INIT = true; applyStatic(); AA.renderers.forEach(fn => fn()); updateMeta(); $$(".lang-btn").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === AA.LANG))); }
+  if (LANG_INIT && !REDUCED) {
+    document.body.classList.add("lang-fading");
+    setTimeout(() => { swap(); document.body.classList.remove("lang-fading"); }, 160);
+  } else {
+    LANG_INIT = true;
+    swap();
+  }
 }
 
 /* ---- mobile nav --------------------------------------------- */
@@ -316,16 +358,16 @@ function initHeroCanvas() {
   const c = $("#heroCanvas");
   if (!c) return;
   const ctx = c.getContext("2d");
-  let t = 0, raf = null, visible = true;
+  let time = 0, raf = null;
   function size() {
     const r = c.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
     c.width = r.width * d; c.height = r.height * d;
     ctx.setTransform(d, 0, 0, d, 0, 0);
   }
-  function y(x, w, h) {
+  function y(x, h) {
     const mid = h * 0.55, a = h * 0.17;
-    return mid + Math.sin(x * 0.022 + t) * a * Math.sin(x * 0.006 + t * 0.55)
-               + Math.sin(x * 0.05 - t * 1.3) * a * 0.32;
+    return mid + Math.sin(x * 0.022 + time) * a * Math.sin(x * 0.006 + time * 0.55)
+               + Math.sin(x * 0.05 - time * 1.3) * a * 0.32;
   }
   function paint() {
     const w = c.clientWidth, h = c.clientHeight;
@@ -333,22 +375,21 @@ function initHeroCanvas() {
     ctx.strokeStyle = "rgba(255,255,255,0.045)"; ctx.lineWidth = 1;
     for (let gx = 24; gx < w; gx += 24) { ctx.beginPath(); ctx.moveTo(gx, 8); ctx.lineTo(gx, h - 8); ctx.stroke(); }
     ctx.beginPath();
-    for (let x = 0; x <= w; x += 3) x === 0 ? ctx.moveTo(x, y(x, w, h)) : ctx.lineTo(x, y(x, w, h));
+    for (let x = 0; x <= w; x += 3) x === 0 ? ctx.moveTo(x, y(x, h)) : ctx.lineTo(x, y(x, h));
     ctx.strokeStyle = "#FF6600"; ctx.lineWidth = 1.6; ctx.stroke();
     if (!REDUCED) {
-      const dx = (t * 46) % w;
-      ctx.beginPath(); ctx.arc(dx, y(dx, w, h), 3, 0, Math.PI * 2);
+      const dx = (time * 46) % w;
+      ctx.beginPath(); ctx.arc(dx, y(dx, h), 3, 0, Math.PI * 2);
       ctx.fillStyle = "#FF8534"; ctx.fill();
     }
   }
-  function frame() { t += 0.014; paint(); raf = requestAnimationFrame(frame); }
+  function frame() { time += 0.014; paint(); raf = requestAnimationFrame(frame); }
   size(); paint();
   addEventListener("resize", () => { size(); if (REDUCED) paint(); });
   if (!REDUCED) {
     new IntersectionObserver(entries => entries.forEach(en => {
-      visible = en.isIntersecting;
-      if (visible && raf === null) frame();
-      if (!visible && raf !== null) { cancelAnimationFrame(raf); raf = null; }
+      if (en.isIntersecting && raf === null) frame();
+      if (!en.isIntersecting && raf !== null) { cancelAnimationFrame(raf); raf = null; }
     })).observe(c);
     frame();
   }
@@ -393,12 +434,14 @@ AA.certSVG = () => `
     <rect x="310" y="352" width="180" height="10" rx="5" fill="rgba(255,255,255,0.09)"/>
   </svg>`;
 
-/* ---- boot ------------------------------------------------------ */
+/* ---- boot ------------------------------------------------------
+   Order matters: detect language FIRST, then render the chrome
+   with the right strings baked in, then run the content pass.   */
 document.addEventListener("DOMContentLoaded", () => {
   buildSprite();
-  renderChrome();
-  AA.LANG = detectLang();
-  setLang(AA.LANG, false);
+  AA.LANG = detectLang();          // 1. language before any t() call
+  renderChrome();                  // 2. header/footer in the right language
+  setLang(AA.LANG, false);         // 3. applyStatic + first content render
   initNav();
   initDialogA11y();
   initDelegation();
