@@ -1,17 +1,19 @@
 /* ============================================================
    Abdallah Abas — service request form
    Frontend validation + configurable submission:
-     mode "whatsapp" → opens wa.me with a prepared summary
-     mode "email"    → opens mailto with a prepared summary
-     mode "endpoint" → POSTs JSON to SITE_CONFIG.form.endpoint
-   HONESTY RULE: the UI never says "sent" unless a backend
-   actually confirmed it (endpoint mode, 2xx response).
+     mode "firestore" → Firestore REST (single document create)
+     mode "whatsapp"  → opens wa.me with a prepared summary
+     mode "email"     → opens mailto with a prepared summary
+     mode "endpoint"  → POSTs JSON to SITE_CONFIG.form.endpoint
+   HONESTY RULE: the UI never says "sent" unless Firestore (2xx)
+   or the endpoint actually confirmed it.
    ============================================================ */
 "use strict";
 
 (() => {
   const { t, L, esc: E, icon } = window.AA;
 
+  /* --- dialog template ---------------------------------------- */
   function template() {
     const opts = LL(SITE_CONFIG.services).map(s =>
       `<option value="${E(s.id)}">${E(L(s.name))}</option>`).join("");
@@ -75,6 +77,12 @@
                 <label for="reqNotes">${t("request.fNotes")}</label>
                 <textarea id="reqNotes" name="notes" rows="2" placeholder="${t("request.phNotes")}"></textarea>
               </div>
+              <!-- honeypot: invisible to humans, tempting to naive bots.
+                   No CSS dependency — the hidden attribute suffices. -->
+              <div class="field field-full" hidden aria-hidden="true">
+                <label for="reqCompany">Company</label>
+                <input id="reqCompany" name="company" type="text" tabindex="-1" autocomplete="off">
+              </div>
               <div class="field field-full consent-row">
                 <input id="reqConsent" name="consent" type="checkbox" required>
                 <label for="reqConsent">${t("request.consent")}</label>
@@ -97,7 +105,8 @@
     return node;
   }
 
-  function val(id) { return ($(id) ? $(id).value : "").trim(); }
+  /* --- helpers -------------------------------------------------- */
+  function val(id) { const el = $(id); return el ? el.value.trim() : ""; }
   const showErr = (k, msg) => {
     const el = $(`[data-err="${k}"]`);
     if (!el) return;
@@ -127,9 +136,14 @@
     const s = LL(SITE_CONFIG.services).find(x => x.id === id);
     return s ? L(s.name) : t("request.fServiceOther");
   }
+
   function buildSummary() {
-    const label = k => t("request." + k).replace(/\s*\*$/, "").replace(" *", "");
-    const budget = val("#reqBudget") ? $(`#reqBudget option[value="${val("#reqBudget")}"]`).textContent : "—";
+    const label = k => t("request." + k).replace(/\s*\*$/, "");
+    const budgetSel = $("#reqBudget");
+    const budget = val("#reqBudget") && budgetSel
+      ? budgetSel.options[budgetSel.selectedIndex].textContent : "—";
+    const contactSel = $("#reqContact");
+    const contact = contactSel ? contactSel.options[contactSel.selectedIndex].textContent : "";
     return [
       `${t("request.title")} — ${SITE_CONFIG.brandName}`,
       `${label("fName")}: ${val("#reqName")}`,
@@ -138,13 +152,13 @@
       `${label("fService")}: ${serviceName(val("#reqService"))}`,
       val("#reqUrl") ? `${label("fUrl")}: ${val("#reqUrl")}` : null,
       `${label("fBudget")}: ${budget}`,
-      `${label("fContact")}: $(#reqContact) option:checked` && $(`#reqContact option:checked`).textContent,
+      `${label("fContact")}: ${contact}`,
       `${label("fDesc")}: ${val("#reqDesc")}`,
       val("#reqNotes") ? `${label("fNotes")}: ${val("#reqNotes")}` : null
     ].filter(Boolean).join("\n");
   }
-   
-  /* --- Firestore submission (REST · zero SDK weight) --------- */
+
+  /* --- Firestore submission (REST · zero SDK weight) ------------ */
   function collectPayload() {
     const p = {
       name: val("#reqName").slice(0, 80),
@@ -172,7 +186,7 @@
               + `?key=${encodeURIComponent(f.apiKey)}`;
     const fields = {};
     Object.entries(payload).forEach(([k, v]) => {
-      if (v) fields[k] = { stringValue: String(v) };   // rules reject anything untyped
+      if (v) fields[k] = { stringValue: String(v) };   // القواعد ترفض أي شيء غير نصي
     });
     try {
       const res = await fetch(url, {
@@ -180,10 +194,11 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fields })
       });
-      return res.ok;                                   // 2xx only → "sent" is truthful
+      return res.ok;                                   // 2xx فقط → "تم الإرسال" صادقة
     } catch (e) { return false; }
   }
-   
+
+  /* --- success view ---------------------------------------------- */
   function showSuccess(summary, kind, mailtoHref) {
     $("#reqFormView").hidden = true;
     const view = $("#reqSuccessView");
@@ -208,44 +223,59 @@
     $("#reqCopyBtn").onclick = () => {
       if (navigator.clipboard) navigator.clipboard.writeText(summary).then(() => AA.toast(t("toast.copied")));
     };
-    view.focus?.();
   }
 
+  /* --- open / submit ---------------------------------------------- */
   window.AA.openRequest = preselect => {
     const c = SITE_CONFIG;
-    if (!c.whatsapp && !c.email && c.form.mode !== "endpoint") {
-      AA.toast(t("contact.noMethods")); return;
-    }
+    const canSubmit = ["firestore", "endpoint"].includes(c.form.mode) || c.whatsapp || c.email;
+    if (!canSubmit) { AA.toast(t("contact.noMethods")); return; }
+
     const node = template();
     AA.openDialog(node);
     if (preselect) $("#reqService").value = preselect;
 
     $("#reqForm").addEventListener("submit", e => {
       e.preventDefault();
+
+      /* honeypot filled → bot. Close silently, send nothing. */
+      if (val("#reqCompany")) { AA.closeDialog(); return; }
+
       if (!validate()) return;
-      const honeypot = e.target.querySelector('input[name="company"]');
-      if (honeypot && honeypot.value) { showSuccess("", "successApi"); return; }  // silent bot drop
 
       const summary = buildSummary();
       const btn = $("#reqSubmit");
       const mode = c.form.mode;
 
+      /* --- Firestore (primary) -------------------------------- */
+      if (mode === "firestore") {
+        btn.disabled = true;
+        btn.querySelector("span").textContent = t("request.sending");
+        submitToFirestore(collectPayload())
+          .then(ok => {
+            btn.disabled = false;
+            btn.querySelector("span").textContent = t("request.submit");
+            showSuccess(summary, ok ? "successApi" : "errApi");
+          })
+          .catch(() => {
+            btn.disabled = false;
+            btn.querySelector("span").textContent = t("request.submit");
+            showSuccess(summary, "errApi");
+          });
+        return;
+      }
+
+      /* --- External endpoint ----------------------------------- */
       if (mode === "endpoint") {
         btn.disabled = true;
         btn.querySelector("span").textContent = t("request.sending");
-        const payload = {
-          name: val("#reqName"), email: val("#reqEmail"), phone: val("#reqPhone"),
-          service: val("#reqService"), url: val("#reqUrl"), budget: val("#reqBudget"),
-          contactMethod: val("#reqContact"), description: val("#reqDesc"), notes: val("#reqNotes")
-        };
         fetch(c.form.endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(collectPayload())
         }).then(r => {
           btn.disabled = false; btn.querySelector("span").textContent = t("request.submit");
-          if (r.ok) showSuccess(summary, "successApi");
-          else showSuccess(summary, "errApi");
+          showSuccess(summary, r.ok ? "successApi" : "errApi");
         }).catch(() => {
           btn.disabled = false; btn.querySelector("span").textContent = t("request.submit");
           showSuccess(summary, "errApi");
@@ -253,14 +283,13 @@
         return;
       }
 
+      /* --- WhatsApp / email fallbacks --------------------------- */
       if (mode === "whatsapp") {
-        if (!c.whatsapp) { AA.toast(t("toast.blogPending")); return; }
-        const url = `https://wa.me/${c.whatsapp}?text=${encodeURIComponent(summary)}`;
-        window.open(url, "_blank", "noopener");
+        if (!c.whatsapp) { AA.toast(t("contact.noMethods")); return; }
+        window.open(`https://wa.me/${c.whatsapp}?text=${encodeURIComponent(summary)}`, "_blank", "noopener");
         showSuccess(summary, "successWa");
         return;
       }
-      /* email mode */
       const href = `mailto:${c.email}?subject=${encodeURIComponent(t("request.emailSubject"))}&body=${encodeURIComponent(summary)}`;
       showSuccess(summary, "successMail", href);
     });
