@@ -157,7 +157,7 @@ const SITE_CONFIG = {
               ar: "منصة محتوى إعلامي عربي — بناء المدونة وتنظيم الأقسام وتحسين الفهرسة والأداء." },
       services: { en: "Blog build, structure, optimization", ar: "بناء المدونة، الهيكلة، التحسين" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.media3rabia.com/", image: "assets/images/projects/media3rabia.webp", caseStudy: null },
+      link: "https://www.media3rabia.com/", image: "assets/images/projects/media3rabia.svg", caseStudy: null },
 
     { id: "amigurumiworld", category: "blogs", year: "",
       title: { en: "Amigurumi World", ar: "أميغورومي وورلد" },
