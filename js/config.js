@@ -160,12 +160,12 @@ const SITE_CONFIG = {
       link: "https://www.media3rabia.com/", image: "assets/images/projects/media3rabia.svg", caseStudy: null },
 
     { id: "amigurumiworld", category: "blogs", year: "",
-      title: { en: "Amigurumi World", ar: "أميغورومي وورلد" },
+      title: { en: "Amigurumi World", ar: "عالم أميغورومي" },
       desc: { en: "An English blog dedicated to the amigurumi craft — design and content structure built for a global audience.",
               ar: "مدونة إنجليزية متخصصة في فن الأميغورومي (الكروشيه) — تصميم وبنية محتوى موجّهة لجمهور عالمي." },
       services: { en: "Blog design, content structure, SEO", ar: "تصميم المدونة، بنية المحتوى، SEO" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.amigurumiworld.org/", image: "assets/images/projects/amigurumiworld.webp", caseStudy: null },
+      link: "https://www.amigurumiworld.org/", image: "assets/images/projects/amigurumiworld.svg", caseStudy: null },
 
     { id: "arabamigurumi", category: "blogs", year: "",
       title: { en: "Arab Amigurumi", ar: "عرب أميغورومي" },
@@ -176,7 +176,7 @@ const SITE_CONFIG = {
       link: "https://www.arabamigurumi.com/", image: "assets/images/projects/arabamigurumi.webp", caseStudy: null },
 
     { id: "sihatoka", category: "blogs", year: "",
-      title: { en: "Sihatoka First", ar: "صحتك أولًا" },
+      title: { en: "Sihatoka First", ar: "درع الصحة" },
       desc: { en: "A health blog on Blogger — complete setup: design, sections, legal pages and AdSense-readiness preparation.",
               ar: "مدونة صحية على بلوجر — إعداد كامل: تصميم، أقسام، صفحات قانونية، وتهيئة لمتطلبات AdSense." },
       services: { en: "Blogger setup, legal pages, AdSense prep", ar: "إعداد بلوجر، صفحات قانونية، تهيئة AdSense" },
