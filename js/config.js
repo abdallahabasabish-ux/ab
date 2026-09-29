@@ -221,7 +221,7 @@ const SITE_CONFIG = {
               ar: "مدونة أعمال وإدارة — تصميم وبنية محتوى وتهيئة لمحركات البحث ومعايير AdSense." },
       services: { en: "Blog design, SEO, AdSense prep", ar: "تصميم المدونة، SEO، تهيئة AdSense" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.businessbits33.com/", image: "assets/images/projects/businessbits.webp", caseStudy: null },
+      link: "https://www.businessbits33.com/", image: "assets/images/projects/businessbits.png", caseStudy: null },
 
     { id: "vendo", category: "other", year: "",
       title: { en: "Vendo", ar: "فيندو" },
@@ -229,7 +229,7 @@ const SITE_CONFIG = {
               ar: "مشروع رقمي بواجهة متجاوبة — بناء وتنظيم أقسام وتهيئة تقنية." },
       services: { en: "Build, structure, technical setup", ar: "بناء، الهيكلة، تهيئة تقنية" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.vendo2.com/", image: "assets/images/projects/vendo.webp", caseStudy: null }
+      link: "https://www.vendo2.com/", image: "assets/images/projects/vendo.svg", caseStudy: null }
   ],
   portfolioCategories: ["websites", "seo", "blogs", "platforms", "education", "ecommerce", "other"],
    
