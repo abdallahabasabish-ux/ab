@@ -149,7 +149,7 @@ const SITE_CONFIG = {
               ar: "مدونة شخصية بهوية بصرية مستقلة — تصميم متجاوب وبنية محتوى وتهيئة تقنية كاملة." },
       services: { en: "Blog design, structure, technical setup", ar: "تصميم المدونة، الهيكلة، تهيئة تقنية" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.albedaei.com/", image: "assets/images/projects/albedaei.webp", caseStudy: null },
+      link: "https://www.albedaei.com/", image: "assets/images/projects/albedaei.svg", caseStudy: null },
 
     { id: "media3rabia", category: "blogs", year: "",
       title: { en: "Arab Media", ar: "ميديا عربية" },
