@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Language variants are served from the same URLs (client-side switching with ?lang=ar support)
+Sitemap: https://abdallahabas.com/sitemap.xml
