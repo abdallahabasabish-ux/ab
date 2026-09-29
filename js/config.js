@@ -213,7 +213,7 @@ const SITE_CONFIG = {
               ar: "مدونة على بلوجر — تصميم وبناء وتهيئة أساسيات SEO." },
       services: { en: "Blogger setup, SEO", ar: "إعداد بلوجر، SEO" },
       tech: ["Blogger"],
-      link: "https://me-rsa.blogspot.com/", image: "assets/images/projects/mersa.webp", caseStudy: null },
+      link: "https://me-rsa.blogspot.com/", image: "assets/images/projects/mersa.svg", caseStudy: null },
 
     { id: "businessbits", category: "blogs", year: "",
       title: { en: "Business Bits", ar: "بيزنس بيتس" },
