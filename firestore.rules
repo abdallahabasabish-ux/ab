@@ -2,11 +2,14 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    match /{document=**} { allow read, write: if false; }
+    /* الافتراضي: رفض شامل — لا استثناء سوى إنشاء طلب صالح */
+    match /{document=**} {
+      allow read, write: if false;
+    }
 
     match /service_requests/{id} {
       allow read, update, delete: if false;   // تدير الطلبات من Console فقط
-      allow create: if isValidRequest();      // الكتابة الوحيدة المسموحة — مشروطة بالشكل
+      allow create: if isValidRequest();
     }
 
     function isValidRequest() {
@@ -15,6 +18,7 @@ service cloud.firestore {
                ['name','email','phone','service','serviceLabel','website',
                 'budget','contactMethod','description','notes','language','sourcePage'])
         && d.keys().hasAll(['name','email','service','serviceLabel','description','contactMethod','language'])
+
         && d.name is string        && d.name.size() >= 2    && d.name.size() <= 80
         && d.email is string       && d.email.size() >= 6   && d.email.size() <= 120
         && d.email.matches('^[^@\\s]+@[^@\\s]+[.][^@\\s]{2,}$')
@@ -23,8 +27,9 @@ service cloud.firestore {
         && d.description is string && d.description.size() >= 20 && d.description.size() <= 3000
         && d.contactMethod is string && d.contactMethod in ['m1','m2','m3']
         && d.language is string    && d.language in ['ar','en']
+
         && (!('phone' in d)      || (d.phone is string   && d.phone.size() >= 7  && d.phone.size() <= 30))
-        && (!('website' in d)    || (d.website is string && d.website.size() >= 8 && d.website.size() <= 200 && d.website.matches('^https?://[a-zA-Z0-9.-]+[.][a-zA-Z]{2,}')))
+        && (!('website' in d)    || (d.website is string && d.website.size() >= 8 && d.website.size() <= 200 && d.website.matches('^https?://[^\\s]+[.][^\\s]+$')))
         && (!('budget' in d)     || (d.budget is string  && d.budget in ['1','2','3','4','5']))
         && (!('notes' in d)      || (d.notes is string   && d.notes.size() <= 1000))
         && (!('sourcePage' in d) || (d.sourcePage is string && d.sourcePage.size() <= 100));
