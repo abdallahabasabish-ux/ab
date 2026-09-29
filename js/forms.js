@@ -143,7 +143,47 @@
       val("#reqNotes") ? `${label("fNotes")}: ${val("#reqNotes")}` : null
     ].filter(Boolean).join("\n");
   }
+   
+  /* --- Firestore submission (REST · zero SDK weight) --------- */
+  function collectPayload() {
+    const p = {
+      name: val("#reqName").slice(0, 80),
+      email: val("#reqEmail").slice(0, 120),
+      service: val("#reqService"),
+      serviceLabel: serviceName(val("#reqService")).slice(0, 60),
+      description: val("#reqDesc").slice(0, 3000),
+      contactMethod: val("#reqContact") || "m1",
+      language: AA.LANG,
+      sourcePage: location.pathname.slice(0, 100)
+    };
+    const phone = val("#reqPhone").replace(/[\s()-]/g, "");
+    if (phone) p.phone = phone.slice(0, 30);
+    if (val("#reqUrl")) p.website = val("#reqUrl").slice(0, 200);
+    if (val("#reqBudget")) p.budget = val("#reqBudget");
+    if (val("#reqNotes")) p.notes = val("#reqNotes").slice(0, 1000);
+    return p;
+  }
 
+  async function submitToFirestore(payload) {
+    const f = SITE_CONFIG.firebase;
+    if (!f || !f.projectId || !f.apiKey) return false;
+    const url = `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(f.projectId)}`
+              + `/databases/(default)/documents/${encodeURIComponent(f.collection || "service_requests")}`
+              + `?key=${encodeURIComponent(f.apiKey)}`;
+    const fields = {};
+    Object.entries(payload).forEach(([k, v]) => {
+      if (v) fields[k] = { stringValue: String(v) };   // rules reject anything untyped
+    });
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fields })
+      });
+      return res.ok;                                   // 2xx only → "sent" is truthful
+    } catch (e) { return false; }
+  }
+   
   function showSuccess(summary, kind, mailtoHref) {
     $("#reqFormView").hidden = true;
     const view = $("#reqSuccessView");
