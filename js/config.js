@@ -169,3 +169,18 @@ const SITE_CONFIG = {
   /* --- Testimonials: NEVER invent. Leave empty until real. --- */
   testimonials: []
 };
+  /* --- Firebase (analytics + service requests) -------------- */
+  firebase: {
+    projectId: "abdallahsst",
+    apiKey: "AIzaSyDg-oSbA_UdlzMS8HZGE0pHtr_zWg5rrXY",
+    appId: "1:1011946194938:web:6c71030a6da4074b68c643",
+    measurementId: "G-P8VBBK21WK",
+    authDomain: "abdallahsst.firebaseapp.com",
+    collection: "service_requests"          // Firestore collection for requests
+  },
+
+  /* --- Service request form --------------------------------- */
+  form: {
+    mode: "firestore",        // "firestore" | "whatsapp" | "email" | "endpoint"
+    endpoint: ""              // used only when mode = "endpoint"
+  },
