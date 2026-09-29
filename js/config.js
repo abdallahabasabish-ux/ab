@@ -133,7 +133,7 @@ const SITE_CONFIG = {
               ar: "مدونة عربية متخصصة في مجال العمل الحر — تصميم كامل وهيكلة أقسام وتهيئة أساسيات SEO." },
       services: { en: "Blog design, structure, SEO", ar: "تصميم المدونة، الهيكلة، SEO" },
       tech: ["Blogger", "Search Console"],
-      link: "https://www.freelancearab.com/", image: "assets/images/projects/freelancearab.webp", caseStudy: null },
+      link: "https://www.freelancearab.com/", image: "assets/images/projects/freelancearab.svg", caseStudy: null },
 
     { id: "airbah", category: "blogs", year: "",
       title: { en: "Arbah Global", ar: "أرباح جلوبال" },
