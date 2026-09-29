@@ -1,0 +1,75 @@
+/* ============================================================
+   Abdallah Abas — responsive layers
+   Breakpoints: 1200 / 1024 / 900 / 768 / 600 / 480 / 360
+   ============================================================ */
+
+@media (max-width:1200px){
+  .hero-grid{grid-template-columns:1.08fr .92fr}
+}
+
+@media (max-width:1024px){
+  .nav-list,.header-cta{display:none}
+  .nav-toggle{display:flex}
+  .main-nav{margin-inline-start:0}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-visual{max-width:580px}
+  .cols-3{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:repeat(2,1fr)}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .request-card{position:static}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+
+@media (max-width:900px){
+  .services-grid.cols-3{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:768px){
+  .cols-2,.cols-3{grid-template-columns:1fr}
+  .services-grid.cols-3{grid-template-columns:1fr}
+  .methods-grid{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .process-grid{grid-template-columns:1fr;gap:24px}
+  .ach-row{grid-template-columns:64px 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-bar{flex-direction:column;align-items:flex-start}
+  .hero{padding-block:44px 52px}
+  .hero-cta .btn{flex:1;min-width:150px}
+  .stat-num{font-size:1.9rem}
+}
+
+@media (max-width:600px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .header-actions{gap:8px}
+  .footer-grid{grid-template-columns:1fr}
+  .dialog{padding:22px 18px;max-height:92vh}
+  .overlay{padding:12px}
+  .acc-btn{font-size:.95rem;padding:17px 2px}
+  .cert-card{max-width:100%}
+}
+
+@media (max-width:480px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat{padding:18px 16px}
+  .project-actions{gap:14px}
+  .brand-word{font-size:.85rem}
+  .hero h1{font-size:clamp(1.9rem,8.5vw,2.4rem)}
+  .page-head h1{font-size:clamp(1.9rem,8.5vw,2.4rem)}
+  .chip{font-size:.8rem;padding:7px 13px}
+  .note-band{flex-direction:column;gap:10px}
+}
+
+@media (max-width:360px){
+  .hero-cta{flex-direction:column}
+  .hero-cta .btn{width:100%}
+  .lang-switch{gap:5px}
+  .header-actions .lang-btn{padding:5px 2px}
+  .ach-row{grid-template-columns:1fr;gap:4px}
+}
+
+/* ---- large screens: cap content width, scale type gently ---- */
+@media (min-width:1600px){
+  :root{--container:1260px}
+  body{font-size:17px}
+}
