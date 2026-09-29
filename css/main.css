@@ -1,18 +1,25 @@
 /* ============================================================
    Abdallah Abas — design system
    Near-black + #FF6600 · hairline grids · IBM Plex + Space Grotesk
+   v2 — perf & a11y audit:
+   · --font-body drops "IBM Plex Sans" (Plex Sans Arabic covers
+     Latin — 7 font variants instead of 16)
+   · --txt3 lifted to 5.3:1 contrast (WCAG AA)
+   · weights 500→600 where 500 is no longer loaded
+   · + .filter-bar/.filter-chip (were unstyled in v1 — audit fix)
+   · + .boot-error banner (config guard)
    ============================================================ */
 
 :root{
   --bg:#0a0a0b; --bg2:#0d0d0f;
   --surface:#121215; --surface2:#17171b;
   --line:rgba(255,255,255,.08); --line2:rgba(255,255,255,.16);
-  --txt:#f4f4f1; --txt2:#a9a9a3; --txt3:#75756f;
+  --txt:#f4f4f1; --txt2:#a9a9a3; --txt3:#85857f;
   --accent:#ff6600; --accent2:#ff8433; --accent-dim:rgba(255,102,0,.13);
   --danger:#e5484d;
   --r:14px; --r-s:10px;
   --font-head:"Space Grotesk","IBM Plex Sans Arabic",sans-serif;
-  --font-body:"IBM Plex Sans","IBM Plex Sans Arabic",sans-serif;
+  --font-body:"IBM Plex Sans Arabic",sans-serif;
   --font-mono:"IBM Plex Mono",monospace;
   --container:1180px; --header-h:72px;
   --tr:.22s cubic-bezier(.4,0,.2,1);
@@ -20,7 +27,6 @@
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-html:focus-within{scroll-behavior:smooth}
 body{
   font-family:var(--font-body); background:var(--bg); color:var(--txt);
   font-size:16px; line-height:1.65; padding-top:var(--header-h);
@@ -101,6 +107,16 @@ p{max-width:70ch}
 }
 .chip:hover{border-color:var(--accent);color:var(--txt)}
 
+/* ---- portfolio filters (v2 — كانت غير منسقة في v1) ---------- */
+.filter-bar{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:clamp(26px,3.5vw,40px)}
+.filter-chip{
+  border:1px solid var(--line2);border-radius:999px;padding:9px 18px;
+  font-size:.88rem;font-weight:600;color:var(--txt2);min-height:42px;
+  transition:border-color var(--tr),color var(--tr),background var(--tr);
+}
+.filter-chip:hover{border-color:var(--accent);color:var(--txt)}
+.filter-chip.active{background:var(--accent);border-color:var(--accent);color:#0a0a0b}
+
 /* ---- header ------------------------------------------------- */
 .site-header{
   position:fixed;inset-inline:0;top:0;height:var(--header-h);z-index:100;
@@ -124,7 +140,7 @@ p{max-width:70ch}
 .header-actions{display:flex;align-items:center;gap:16px}
 .lang-switch{display:flex;align-items:center;gap:8px}
 .lang-btn{
-  font-family:var(--font-mono);font-size:.8rem;font-weight:500;padding:5px 4px;
+  font-family:var(--font-mono);font-size:.8rem;font-weight:600;padding:5px 4px;
   color:var(--txt3);transition:color var(--tr);
 }
 .lang-btn[aria-pressed="true"]{color:var(--accent)}
@@ -150,7 +166,7 @@ p{max-width:70ch}
 .mobile-panel.open{transform:none;visibility:visible}
 .mobile-list{display:flex;flex-direction:column}
 .mobile-list a{
-  display:block;padding:14px 4px;font-size:1.05rem;font-weight:500;color:var(--txt);
+  display:block;padding:14px 4px;font-size:1.05rem;font-weight:600;color:var(--txt);
   border-bottom:1px solid var(--line);transition:color var(--tr),padding-inline-start var(--tr);
 }
 .mobile-list a:hover{color:var(--accent);padding-inline-start:10px}
@@ -254,7 +270,7 @@ p{max-width:70ch}
 .expertise{margin-top:clamp(38px,5vw,56px)}
 
 /* ---- process --------------------------------------------------- */
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,36px);counter-reset:step}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,36px)}
 .step{border-top:1px solid var(--line2);padding-top:20px}
 .step-num{font-size:.78rem;color:var(--accent);display:block;margin-bottom:12px}
 .step h3{font-size:1.02rem;margin-bottom:7px}
@@ -369,7 +385,7 @@ p{max-width:70ch}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
 .field{display:flex;flex-direction:column;gap:7px}
 .field-full{grid-column:1/-1}
-.field label{font-size:.86rem;font-weight:500;color:var(--txt2)}
+.field label{font-size:.86rem;font-weight:600;color:var(--txt2)}
 .field input,.field select,.field textarea{
   width:100%;background:var(--bg);border:1px solid var(--line2);border-radius:var(--r-s);
   padding:12px 14px;color:var(--txt);font:inherit;font-size:.94rem;min-height:46px;
@@ -488,6 +504,12 @@ body.no-scroll{overflow:hidden}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1!important;transform:none!important}
   .mobile-panel{transition:none}
+}
+
+/* ---- boot error banner ----------------------------------------------------------- */
+.boot-error{
+  position:fixed;inset-inline:0;top:0;z-index:999;background:var(--danger);
+  color:#fff;padding:14px 20px;font-size:.9rem;text-align:center;
 }
 
 /* ---- helpers ---------------------------------------------------------------------- */
