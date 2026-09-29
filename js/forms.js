@@ -6,12 +6,17 @@
      mode "email"     → opens mailto with a prepared summary
      mode "endpoint"  → POSTs JSON to SITE_CONFIG.form.endpoint
    HONESTY RULE: the UI never says "sent" unless Firestore (2xx)
-   or the endpoint actually confirmed it.
+   or the endpoint actually confirmed it. On failure the user
+   always gets a copyable summary + alternative channels.
+   SECURITY: user input is never injected as HTML. The honeypot
+   field is never sent to Firestore (rules' hasOnly would reject
+   it anyway — by design). Client validation is UX only; the
+   security rules are the real gate.
    ============================================================ */
 "use strict";
 
 (() => {
-  const { t, L, esc: E, icon } = window.AA;
+  const { t, L, LL, esc: E, icon } = window.AA;
 
   /* --- dialog template ---------------------------------------- */
   function template() {
@@ -78,7 +83,7 @@
                 <textarea id="reqNotes" name="notes" rows="2" placeholder="${t("request.phNotes")}"></textarea>
               </div>
               <!-- honeypot: invisible to humans, tempting to naive bots.
-                   No CSS dependency — the hidden attribute suffices. -->
+                   Its value is never submitted anywhere. -->
               <div class="field field-full" hidden aria-hidden="true">
                 <label for="reqCompany">Company</label>
                 <input id="reqCompany" name="company" type="text" tabindex="-1" autocomplete="off">
@@ -92,7 +97,7 @@
             <button type="submit" class="btn btn-solid btn-block" id="reqSubmit">${icon("send")}<span>${t("request.submit")}</span></button>
           </form>
         </div>
-        <div class="form-success" id="reqSuccessView" hidden>
+        <div class="form-success" id="reqSuccessView" tabindex="-1" hidden>
           <span class="success-ico">${icon("check")}</span>
           <h3>${t("request.successTitle")}</h3>
           <p id="reqSuccessMsg"></p>
@@ -194,8 +199,20 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ fields })
       });
+      if (!res.ok) {
+        /* رسالة Google تحسم التشخيص — لكن لا تفترض أن الجسم JSON */
+        let reason = `HTTP ${res.status}`;
+        try {
+          const data = await res.json();
+          reason = data?.error?.message || reason;
+        } catch (e) { /* جسم غير JSON — نبقي الحالة فقط */ }
+        console.error("[AA] Firestore rejected the request:", reason);
+      }
       return res.ok;                                   // 2xx فقط → "تم الإرسال" صادقة
-    } catch (e) { return false; }
+    } catch (e) {
+      console.error("[AA] Firestore network failure:", e?.message || e);
+      return false;
+    }
   }
 
   /* --- success view ---------------------------------------------- */
@@ -223,12 +240,19 @@
     $("#reqCopyBtn").onclick = () => {
       if (navigator.clipboard) navigator.clipboard.writeText(summary).then(() => AA.toast(t("toast.copied")));
     };
+    view.focus();   // قارئات الشاشة تعرف أن العرض تغيّر
   }
 
   /* --- open / submit ---------------------------------------------- */
   window.AA.openRequest = preselect => {
     const c = SITE_CONFIG;
-    const canSubmit = ["firestore", "endpoint"].includes(c.form.mode) || c.whatsapp || c.email;
+    /* البوابة تتحقق من القناة الفعلية المطلوبة للوضع المضبوط */
+    const mode = c.form.mode;
+    const canSubmit =
+      (mode === "firestore" && c.firebase && c.firebase.projectId && c.firebase.apiKey) ||
+      (mode === "endpoint"  && !!c.form.endpoint) ||
+      (mode === "whatsapp"  && !!c.whatsapp) ||
+      (mode === "email"     && !!c.email);
     if (!canSubmit) { AA.toast(t("contact.noMethods")); return; }
 
     const node = template();
@@ -245,10 +269,10 @@
 
       const summary = buildSummary();
       const btn = $("#reqSubmit");
-      const mode = c.form.mode;
+      const m = c.form.mode;
 
       /* --- Firestore (primary) -------------------------------- */
-      if (mode === "firestore") {
+      if (m === "firestore") {
         btn.disabled = true;
         btn.querySelector("span").textContent = t("request.sending");
         submitToFirestore(collectPayload())
@@ -266,7 +290,7 @@
       }
 
       /* --- External endpoint ----------------------------------- */
-      if (mode === "endpoint") {
+      if (m === "endpoint") {
         btn.disabled = true;
         btn.querySelector("span").textContent = t("request.sending");
         fetch(c.form.endpoint, {
@@ -284,7 +308,7 @@
       }
 
       /* --- WhatsApp / email fallbacks --------------------------- */
-      if (mode === "whatsapp") {
+      if (m === "whatsapp") {
         if (!c.whatsapp) { AA.toast(t("contact.noMethods")); return; }
         window.open(`https://wa.me/${c.whatsapp}?text=${encodeURIComponent(summary)}`, "_blank", "noopener");
         showSuccess(summary, "successWa");
