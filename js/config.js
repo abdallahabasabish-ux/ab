@@ -121,36 +121,118 @@ const SITE_CONFIG = {
                   ar: ["جلسة مركزة على أهدافك", "خطوات تالية واضحة", "تقييم تقني صريح"] } }
   ],
 
-  /* --- Portfolio ---------------------------------------------
-     العناصر نماذج موسومة sample:true (شارة "نموذج") — استبدلها. */
+   /* --- Portfolio ---------------------------------------------
+     13 مشروعًا حقيقيًا — روابط فعلية.
+     ⚠ مطلوب منك: (1) تأكيد/تصحيح كل وصف، (2) تعبئة year عند
+       المعرفة، (3) تعديل tech حيث المنصة WordPress، (4) تعديل
+       category لـ vendo/me-rsa إن لزم.                          */
   portfolio: [
-    { id: "p1", sample: true, category: "websites", year: "2025",
-      title: { en: "Sample — Business Website", ar: "نموذج — موقع تعريفي" },
-      desc: { en: "Sample entry showing how project cards work. Replace it with a real project in js/config.js.",
-              ar: "عنصر توضيحي يشرح شكل بطاقة المشروع. استبدله بمشروع حقيقي في js/config.js." },
-      services: { en: "Development, on-page SEO", ar: "تطوير، تحسين مضموني" },
-      tech: ["HTML", "CSS", "JavaScript"], link: "", image: "",
-      caseStudy: {
-        challenge:      { en: "A growing business needed a website that loads fast, works on every device, and presents its services clearly.",
-                          ar: "كان النشاط بحاجة إلى موقع سريع يعمل على جميع الأجهزة ويعرض خدماته بوضوح." },
-        analysis:       { en: "The existing pages mixed content with heavy markup, had no metadata, and lacked a clear heading structure.",
-                          ar: "كانت الصفحات الحالية تخلط المحتوى بأكواد ثقيلة، دون بيانات وصفية أو تسلسل عناوين واضح." },
-        solution:       { en: "A rebuild on clean semantic HTML, a responsive layout, and an on-page SEO structure defined before writing content.",
-                          ar: "إعادة بناء بـ HTML دلالي نظيف، وتخطيط متجاوب، وبنية SEO محددة قبل كتابة المحتوى." },
-        implementation: { en: "Semantic templates, image optimization, metadata, internal linking, and Search Console verification.",
-                          ar: "قوالب دلالية، وضغط الصور، وبيانات وصفية، وربط داخلي، والتحقق من Search Console." },
-        result:         { en: "Implementation focused on improving speed, structure and page experience. Measured outcomes are added once real data is available.",
-                          ar: "ركّز التنفيذ على تحسين السرعة والبنية وتجربة الصفحة. تُضاف النتائج المقاسة عند توفر بيانات حقيقية." }
-      } },
-    { id: "p2", sample: true, category: "blogs", year: "2025",
-      title: { en: "Sample — Blog Optimization", ar: "نموذج — تحسين مدوّنة" },
-      desc: { en: "Sample entry for a Blogger/WordPress optimization project. Replace it with a real project in js/config.js.",
-              ar: "عنصر توضيحي لمشروع تحسين بلوجر/ووردبريس. استبدله بمشروع حقيقي في js/config.js." },
+    { id: "freelancearab", category: "blogs", year: "",
+      title: { en: "Arab Freelancer", ar: "عرب فريلانسر" },
+      desc: { en: "An Arabic blog dedicated to freelancing — full design, section structure and SEO fundamentals.",
+              ar: "مدونة عربية متخصصة في مجال العمل الحر — تصميم كامل وهيكلة أقسام وتهيئة أساسيات SEO." },
+      services: { en: "Blog design, structure, SEO", ar: "تصميم المدونة، الهيكلة، SEO" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.freelancearab.com/", image: "assets/images/projects/freelancearab.webp", caseStudy: null },
+
+    { id: "airbah", category: "blogs", year: "",
+      title: { en: "Arbah Global", ar: "أرباح جلوبال" },
+      desc: { en: "A content blog in the online-earnings niche — built and prepared following Google's published best practices.",
+              ar: "مدونة محتوى في مجال الربح من الإنترنت — بناء المدونة وتهيئتها وفق أفضل الممارسات المنشورة من Google." },
+      services: { en: "Blog build, AdSense-readiness prep, SEO", ar: "بناء المدونة، تهيئة AdSense، SEO" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.airbah.com/", image: "assets/images/projects/airbah.webp", caseStudy: null },
+
+    { id: "albedaei", category: "blogs", year: "",
+      title: { en: "Albedaei", ar: "البيدعي" },
+      desc: { en: "A personal blog with an independent visual identity — responsive design, content structure and full technical setup.",
+              ar: "مدونة شخصية بهوية بصرية مستقلة — تصميم متجاوب وبنية محتوى وتهيئة تقنية كاملة." },
+      services: { en: "Blog design, structure, technical setup", ar: "تصميم المدونة، الهيكلة، تهيئة تقنية" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.albedaei.com/", image: "assets/images/projects/albedaei.webp", caseStudy: null },
+
+    { id: "media3rabia", category: "blogs", year: "",
+      title: { en: "Arab Media", ar: "ميديا عربية" },
+      desc: { en: "An Arabic media-content platform — blog build, category organization, indexing and performance optimization.",
+              ar: "منصة محتوى إعلامي عربي — بناء المدونة وتنظيم الأقسام وتحسين الفهرسة والأداء." },
+      services: { en: "Blog build, structure, optimization", ar: "بناء المدونة، الهيكلة، التحسين" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.media3rabia.com/", image: "assets/images/projects/media3rabia.webp", caseStudy: null },
+
+    { id: "amigurumiworld", category: "blogs", year: "",
+      title: { en: "Amigurumi World", ar: "أميغورومي وورلد" },
+      desc: { en: "An English blog dedicated to the amigurumi craft — design and content structure built for a global audience.",
+              ar: "مدونة إنجليزية متخصصة في فن الأميغورومي (الكروشيه) — تصميم وبنية محتوى موجّهة لجمهور عالمي." },
+      services: { en: "Blog design, content structure, SEO", ar: "تصميم المدونة، بنية المحتوى، SEO" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.amigurumiworld.org/", image: "assets/images/projects/amigurumiworld.webp", caseStudy: null },
+
+    { id: "arabamigurumi", category: "blogs", year: "",
+      title: { en: "Arab Amigurumi", ar: "عرب أميغورومي" },
+      desc: { en: "An Arabic amigurumi-specialized blog — design, pattern and section structure, search-engine preparation.",
+              ar: "مدونة عربية متخصصة في الأميغورومي — تصميم وهيكلة أقسام وأنماط وتهيئة محركات البحث." },
+      services: { en: "Blog design, structure, SEO", ar: "تصميم المدونة، الهيكلة، SEO" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.arabamigurumi.com/", image: "assets/images/projects/arabamigurumi.webp", caseStudy: null },
+
+    { id: "sihatoka", category: "blogs", year: "",
+      title: { en: "Sihatoka First", ar: "صحتك أولًا" },
+      desc: { en: "A health blog on Blogger — complete setup: design, sections, legal pages and AdSense-readiness preparation.",
+              ar: "مدونة صحية على بلوجر — إعداد كامل: تصميم، أقسام، صفحات قانونية، وتهيئة لمتطلبات AdSense." },
+      services: { en: "Blogger setup, legal pages, AdSense prep", ar: "إعداد بلوجر، صفحات قانونية، تهيئة AdSense" },
+      tech: ["Blogger"],
+      link: "https://sihatokafirst.blogspot.com/", image: "assets/images/projects/sihatoka.webp", caseStudy: null },
+
+    { id: "rawa4all", category: "blogs", year: "",
+      title: { en: "Rawa 4 All", ar: "روى 4 أول" },   // ⚠ صحّح الاسم العربي
+      desc: { en: "A general-interest blog on Blogger — design, build and SEO/legal-pages setup.",
+              ar: "مدونة عامة على بلوجر — تصميم وبناء وتهيئة أساسيات SEO والصفحات القانونية." },
       services: { en: "Blogger setup, SEO, legal pages", ar: "إعداد بلوجر، SEO، صفحات قانونية" },
-      tech: ["Blogger", "Search Console"], link: "", image: "", caseStudy: null }
+      tech: ["Blogger"],
+      link: "https://rawa4all.blogspot.com/", image: "assets/images/projects/rawa4all.webp", caseStudy: null },
+
+    { id: "academyeg", category: "education", year: "",
+      title: { en: "Academy EG", ar: "أكاديمية إيج" },
+      desc: { en: "An educational platform on Blogger — learning-section structure, responsive design and SEO preparation.",
+              ar: "منصة تعليمية على بلوجر — هيكلة أقسام تعليمية وتصميم متجاوب وتهيئة لمحركات البحث." },
+      services: { en: "Blogger setup, structure, SEO", ar: "إعداد بلوجر، الهيكلة، SEO" },
+      tech: ["Blogger"],
+      link: "https://academyeg.blogspot.com/", image: "assets/images/projects/academyeg.webp", caseStudy: null },
+
+    { id: "medbdarija", category: "blogs", year: "",
+      title: { en: "Med B Darija", ar: "ميد بالدارجة" },
+      desc: { en: "A Moroccan-Darija content blog — design, structure and complete technical setup.",
+              ar: "مدونة محتوى بالدارجة المغربية — تصميم وهيكلة وتهيئة تقنية كاملة." },
+      services: { en: "Blog design, structure, technical setup", ar: "تصميم المدونة، الهيكلة، تهيئة تقنية" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.medbdarija.com/", image: "assets/images/projects/medbdarija.webp", caseStudy: null },
+
+    { id: "mersa", category: "other", year: "",
+      title: { en: "ME-RSA", ar: "ME-RSA" },
+      desc: { en: "A blog on Blogger — design, build and SEO fundamentals.",   // ⚠ حدّد تخصصه لأثري الوصف
+              ar: "مدونة على بلوجر — تصميم وبناء وتهيئة أساسيات SEO." },
+      services: { en: "Blogger setup, SEO", ar: "إعداد بلوجر، SEO" },
+      tech: ["Blogger"],
+      link: "https://me-rsa.blogspot.com/", image: "assets/images/projects/mersa.webp", caseStudy: null },
+
+    { id: "businessbits", category: "blogs", year: "",
+      title: { en: "Business Bits", ar: "بيزنس بيتس" },
+      desc: { en: "A business and management blog — design, content structure and search/AdSense-readiness preparation.",
+              ar: "مدونة أعمال وإدارة — تصميم وبنية محتوى وتهيئة لمحركات البحث ومعايير AdSense." },
+      services: { en: "Blog design, SEO, AdSense prep", ar: "تصميم المدونة، SEO، تهيئة AdSense" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.businessbits33.com/", image: "assets/images/projects/businessbits.webp", caseStudy: null },
+
+    { id: "vendo", category: "other", year: "",
+      title: { en: "Vendo", ar: "فيندو" },
+      desc: { en: "A digital project with a responsive front end — build, section organization and technical setup.",
+              ar: "مشروع رقمي بواجهة متجاوبة — بناء وتنظيم أقسام وتهيئة تقنية." },
+      services: { en: "Build, structure, technical setup", ar: "بناء، الهيكلة، تهيئة تقنية" },
+      tech: ["Blogger", "Search Console"],
+      link: "https://www.vendo2.com/", image: "assets/images/projects/vendo.webp", caseStudy: null }
   ],
   portfolioCategories: ["websites", "seo", "blogs", "platforms", "education", "ecommerce", "other"],
-
+   
   /* --- Certificates: لا تُخترع أبدًا. أضف الحقيقية فقط. ----- */
   certificates: [
     /* { id: "c1", title: {en:"…", ar:"…"}, org: {en:"…", ar:"…"},
