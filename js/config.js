@@ -1,6 +1,8 @@
 /* ============================================================
    Abdallah Abas — central configuration
    Everything editable lives here. Bilingual fields use { en, ar }.
+   ⚠ هذا الملف يُعدَّل كثيرًا — كل قيمة نصية بين "..." وكل سطر
+     ينتهي بفاصلة. خطأ نحوي هنا يعطّل الموقع بالكامل.
    ============================================================ */
 "use strict";
 
@@ -9,18 +11,21 @@ const SITE_CONFIG = {
   /* --- Brand ------------------------------------------------ */
   brandName: "Abdallah Abas",
   siteUrl: "https://abdallahabas.com",               // الرابط الرسمي
-  logo: { src: "assets/images/logo.svg" },                                 // e.g. "assets/images/logo.svg" (فارغ = مونوغرام مدمج)
+  logo: { src: "assets/images/logo.svg" },           // ⚠ يجب أن يوجد الملف فعليًا — وإلا ضع "" مؤقتًا
 
   /* --- Destinations ----------------------------------------- */
   blogUrl: "https://blog.abdallahabas.com",          // رابط المدونة
-  cvUrl: "assets/abdallah-abas-cv.pdf",                                         // e.g. "assets/abdallah-abas-cv.pdf"
+  cvUrl: "assets/abdallah-abas-cv.pdf",              // ⚠ يجب أن يوجد الملف فعليًا — وإلا ضع "" مؤقتًا
 
   /* --- Direct contact (اتركه "" ليختفى تلقائيًا) ------------- */
-  email: "abdallahabasabish@gmail.com",                                         // e.g. "contact@abdallahabas.com"
-  whatsapp: "whatsapp: "201001378339",   // +20 100 137 8339",                                      // أرقام فقط بصيغة دولية، e.g. "249912345678"
+  email: "abdallahabasabish@gmail.com",
+  whatsapp: "201001378339",                          // +20 100 137 8339 — أرقام فقط بين اقتباسين
   social: {
-    facebook: "https://www.facebook.com/Abdallah.G.designer", linkedin: "https://linkedin.com/in/abdallah-abas-16601a258", instagram: "",
-    telegram: "https://t.me/abdallahabasmo", github: "https://github.com/abdallahabasabish-ux/"
+    facebook: "https://www.facebook.com/Abdallah.G.designer",
+    linkedin: "https://www.linkedin.com/in/abdallah-abas-16601a258",
+    instagram: "",
+    telegram: "https://t.me/abdallahabasmo",
+    github: "https://github.com/abdallahabasabish-ux"
   },
 
   /* --- Firebase (analytics + service requests) -------------- */
@@ -30,7 +35,7 @@ const SITE_CONFIG = {
     appId: "1:1011946194938:web:6c71030a6da4074b68c643",
     measurementId: "G-P8VBBK21WK",
     authDomain: "abdallahsst.firebaseapp.com",
-    collection: "service_requests"                   // مجموعة Firestore لطلبات الخدمة
+    collection: "service_requests"
   },
 
   /* --- Service request form --------------------------------- */
@@ -56,9 +61,9 @@ const SITE_CONFIG = {
     { en: "Performance optimization", ar: "تحسين الأداء" }
   ],
 
-  /* --- Services --------------------------------------------- */
-  /* ملاحظة: معرّفات id هنا يجب أن تبقى مطابقة لقائمة enum
-     في firestore.rules — أي إضافة خدمة تتطلب تحديث القواعد.   */
+  /* --- Services ---------------------------------------------
+     ⚠ معرّفات id هنا مطابقة لقائمة enum في firestore.rules —
+       أي إضافة خدمة تتطلب تحديث القواعد أيضًا.                */
   services: [
     { id: "web-dev", icon: "code",
       name: { en: "Website Development", ar: "تطوير المواقع" },
@@ -117,8 +122,7 @@ const SITE_CONFIG = {
   ],
 
   /* --- Portfolio ---------------------------------------------
-     العناصر أدناه نماذج موسومة بـ sample:true (تظهر شارة "نموذج").
-     استبدلها بمشاريع حقيقية واحذف الخاصية sample.             */
+     العناصر نماذج موسومة sample:true (شارة "نموذج") — استبدلها. */
   portfolio: [
     { id: "p1", sample: true, category: "websites", year: "2025",
       title: { en: "Sample — Business Website", ar: "نموذج — موقع تعريفي" },
@@ -151,7 +155,7 @@ const SITE_CONFIG = {
   certificates: [
     /* { id: "c1", title: {en:"…", ar:"…"}, org: {en:"…", ar:"…"},
        date: "2025-06-01", credentialId: "…", verifyUrl: "…",
-       image: "assets/certificates/c1.jpg" } */
+       image: "assets/certificates/c1.webp" } */
   ],
 
   /* --- Achievements: لا تُخترع أبدًا. أضف الحقيقية فقط. ----- */
@@ -160,7 +164,7 @@ const SITE_CONFIG = {
        title:{en:"…",ar:"…"}, org:{en:"…",ar:"…"}, desc:{en:"…",ar:"…"} } */
   ],
 
-  /* --- Articles (بوابة نحو المدونة على blog.abdallahabas.com) - */
+  /* --- Articles (بوابة نحو المدونة) -------------------------- */
   articles: [
     { id: "ar1", sample: true, category: "seo", date: "2025-06-12", slug: "/sample-seo-basics",
       title: { en: "Sample — SEO Basics for New Blogs", ar: "نموذج — أساسيات SEO للمدونات الجديدة" },
