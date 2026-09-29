@@ -9,18 +9,18 @@ const SITE_CONFIG = {
   /* --- Brand ------------------------------------------------ */
   brandName: "Abdallah Abas",
   siteUrl: "https://abdallahabas.com",               // الرابط الرسمي
-  logo: { src: "" },                                 // e.g. "assets/images/logo.svg" (فارغ = مونوغرام مدمج)
+  logo: { src: "assets/images/logo.svg" },                                 // e.g. "assets/images/logo.svg" (فارغ = مونوغرام مدمج)
 
   /* --- Destinations ----------------------------------------- */
   blogUrl: "https://blog.abdallahabas.com",          // رابط المدونة
-  cvUrl: "",                                         // e.g. "assets/abdallah-abas-cv.pdf"
+  cvUrl: "assets/abdallah-abas-cv.pdf",                                         // e.g. "assets/abdallah-abas-cv.pdf"
 
   /* --- Direct contact (اتركه "" ليختفى تلقائيًا) ------------- */
-  email: "",                                         // e.g. "contact@abdallahabas.com"
-  whatsapp: "",                                      // أرقام فقط بصيغة دولية، e.g. "249912345678"
+  email: "abdallahabasabish@gmail.com",                                         // e.g. "contact@abdallahabas.com"
+  whatsapp: "whatsapp: "201001378339",   // +20 100 137 8339",                                      // أرقام فقط بصيغة دولية، e.g. "249912345678"
   social: {
-    facebook: "", linkedin: "", instagram: "",
-    telegram: "", github: ""
+    facebook: "https://www.facebook.com/Abdallah.G.designer", linkedin: "https://linkedin.com/in/abdallah-abas-16601a258", instagram: "",
+    telegram: "https://t.me/abdallahabasmo", github: "https://github.com/abdallahabasabish-ux/"
   },
 
   /* --- Firebase (analytics + service requests) -------------- */
