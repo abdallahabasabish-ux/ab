@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>Ausbijobs | دليل الأوسبيلدونغ الشامل في ألمانيا — خطة تنظيم المحتوى وتهيئة AdSense</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+:root {
+  --bg:#f5f5f4; --secbg:#ecebe9; --card:#eae9e5; --hf:#544c35; --block:#837754;
+  --border:#d8d3c1; --icon:#907c40; --accent:#a4862b; --text:#1c1c1a;
+  --muted:#8f8d86; --err:#9e463e; --ink:#efede6;
+}
+html, body {
+  margin:0; padding:0; width:720px; background:#544c35;
+  font-family:'Tajawal','Cairo',sans-serif; font-size:15px; color:var(--text);
+  line-height:1.75;
+}
+body { line-break:strict; word-break:normal; overflow-wrap:break-word; }
+@media screen {
+  html { height:auto; display:flex; justify-content:center; background:#544c35; }
+  body { margin:24px auto; box-shadow:0 0 44px rgba(0,0,0,.45); }
+}
+p, td, li { overflow-wrap:break-word; word-break:break-word; }
+p { text-align:justify; margin:0 0 10px; }
+* { box-sizing:border-box; }
+
+/* ══ الغلاف ══ */
+.front { width:720px; height:1020px; position:relative; break-after:page;
+  background:
+    radial-gradient(circle 460px at -80px 1080px, rgba(164,134,43,0.055) 0, rgba(164,134,43,0.055) 99%, rgba(164,134,43,0) 100%),
+    radial-gradient(circle 236px at 620px 950px, rgba(164,134,43,0) 0, rgba(164,134,43,0) 235px, rgba(164,134,43,0.12) 235px, rgba(164,134,43,0.12) 236px, rgba(164,134,43,0) 236px),
+    #f5f5f4; }
+.fp-line { position:absolute; right:86px; top:100px; bottom:100px;
+  width:6px; background:var(--accent); }
+.fp-content { position:absolute; right:166px; left:56px; top:0; bottom:0; }
+.fp-kicker { position:absolute; top:148px; font-size:13.5px; font-weight:500;
+  color:var(--muted); }
+.fp-kicker b { color:var(--accent); font-weight:700; }
+.hero-latin { position:absolute; top:212px; font-family:'Cairo',sans-serif;
+  font-weight:900; font-size:58px; line-height:1.05; color:var(--text); }
+.hero-ar { position:absolute; top:296px; font-family:'Cairo',sans-serif;
+  font-weight:700; font-size:27px; line-height:1.4; color:var(--hf); max-width:470px; }
+.fp-summary { position:absolute; top:470px; max-width:480px; font-size:16px;
+  line-height:1.85; color:var(--text); opacity:.88; text-align:justify; }
+.fp-stats { position:absolute; top:672px; left:0; right:0; display:flex;
+  flex-wrap:wrap; gap:10px; max-width:100%; }
+.cstat { flex:1 1 42%; min-width:170px; max-width:100%; background:#fff;
+  border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.cstat-num { font-family:'Cairo',sans-serif; font-weight:800; font-size:25px;
+  color:var(--accent); line-height:1.15; }
+.cstat-lbl { font-size:12.5px; color:var(--muted); font-weight:500; margin-top:2px; }
+.fp-meta { position:absolute; top:905px; font-size:13.5px; color:var(--text); }
+.fp-meta span { color:var(--muted); }
+.fp-edition { position:absolute; bottom:44px; left:0; font-size:11px;
+  color:var(--muted); font-family:'DejaVu Sans Mono',monospace; }
+
+/* ══ المحتوى ══ */
+.main-content { padding:54px 58px 40px; background:var(--bg); }
+.chapter-header { break-after:avoid; break-inside:avoid; margin:26px 0 16px; }
+.chapter-header.first { margin-top:0; }
+.section-tag { font-family:'Cairo',sans-serif; font-weight:800; font-size:12px;
+  color:var(--accent); }
+.section-title { font-family:'Cairo',sans-serif; font-weight:800; font-size:25px;
+  line-height:1.35; color:var(--text); margin:4px 0 0; }
+.section-title::after { content:''; display:block; height:3px; width:64px;
+  background:var(--accent); margin-top:10px; border-radius:2px; }
+h3.sub { font-family:'Cairo',sans-serif; font-weight:700; font-size:18.5px;
+  color:var(--hf); margin:20px 0 8px; break-after:avoid; line-height:1.4; }
+.lead { font-size:15px; }
+
+/* بطاقات عامة */
+.card { background:#fff; border:1px solid var(--border); border-radius:10px;
+  padding:13px 16px; margin-bottom:12px; break-inside:avoid; }
+.card-label { font-family:'Cairo',sans-serif; font-weight:700; font-size:13px;
+  color:var(--accent); margin-bottom:5px; }
+.card-value { font-family:'Cairo',sans-serif; font-weight:700; font-size:17px;
+  line-height:1.5; color:var(--text); }
+.card-note { font-size:13px; color:var(--muted); margin-top:6px; line-height:1.65;
+  text-align:justify; }
+.chip { display:inline-block; font-family:'DejaVu Sans Mono',monospace;
+  font-size:11px; color:var(--hf); background:var(--secbg);
+  border:1px solid var(--border); border-radius:5px; padding:1px 8px;
+  vertical-align:middle; }
+
+.callout { background:rgba(164,134,43,0.08); border-right:3px solid var(--accent);
+  border-radius:6px; padding:11px 14px; margin:10px 0 14px; font-size:13.5px;
+  line-height:1.75; break-inside:avoid; text-align:justify; }
+.callout.warn { background:rgba(158,70,62,0.06); border-right-color:var(--err); }
+
+/* شبكة أرقام */
+.stat-grid { display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 6px; max-width:100%; }
+.stat { flex:1 1 29%; min-width:160px; max-width:100%; background:#fff;
+  border:1px solid var(--border); border-radius:10px; padding:12px 14px;
+  break-inside:avoid; }
+.stat-num { font-family:'Cairo',sans-serif; font-weight:800; font-size:26px;
+  color:var(--accent); line-height:1.15; }
+.stat-lbl { font-size:12.5px; color:var(--muted); font-weight:500; margin-top:3px; line-height:1.45; }
+
+/* بطاقات المقالات */
+.a-card { background:#fff; border:1px solid var(--border);
+  border-right:3px solid var(--accent); border-radius:8px;
+  padding:11px 14px; margin-bottom:9px; break-inside:avoid; }
+.a-top { margin-bottom:6px; line-height:1.55; }
+.a-title { font-family:'Cairo',sans-serif; font-weight:700; font-size:14.5px;
+  color:var(--text); }
+.a-slug-row { display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  margin:5px 0 6px; max-width:100%; }
+.a-key { font-size:11.5px; color:var(--muted); font-weight:500; flex-shrink:0; }
+.a-desc { font-size:14px; color:#504e48; line-height:1.7; text-align:justify; margin:0; }
+.dup-badge { display:inline-block; font-size:10.5px; font-weight:700;
+  color:var(--err); background:rgba(158,70,62,0.10);
+  border:1px solid rgba(158,70,62,0.28); border-radius:4px;
+  padding:1px 7px; margin-right:6px; vertical-align:middle; white-space:nowrap; }
+.cat-h { font-family:'Cairo',sans-serif; font-weight:800; font-size:18px;
+  color:var(--hf); margin:18px 0 4px; break-after:avoid; }
+.cat-count { font-size:12px; color:var(--muted); font-weight:500;
+  font-family:'Tajawal',sans-serif; margin-bottom:10px; break-after:avoid; }
+
+/* جداول */
+table { width:100%; border-collapse:collapse; margin:8px 0 14px; }
+thead { display:table-header-group; }
+tr { break-inside:avoid; }
+th { background:var(--hf); color:var(--ink); font-family:'Cairo',sans-serif;
+  font-weight:700; font-size:13px; padding:8px 11px; text-align:right;
+  border:1px solid var(--hf); line-height:1.5; }
+td { border:1px solid var(--border); padding:7px 11px; font-size:13.5px;
+  line-height:1.65; vertical-align:top; background:#fff; }
+tbody tr:nth-child(odd) td { background:var(--secbg); }
+td b { font-family:'Cairo',sans-serif; font-weight:700; color:var(--text); }
+.keep { break-inside:avoid; }
+
+/* أكواد */
+.code { direction:ltr; text-align:left; font-family:'DejaVu Sans Mono','Courier New',monospace; font-size:11.5px; line-height:1.7; background:var(--hf);
+  color:var(--ink); border-radius:8px; padding:13px 16px; margin:8px 0 14px;
+  white-space:pre-wrap; break-inside:avoid; overflow-wrap:break-word; }
+.code .cm { color:#b9b19b; }
+
+/* قوائم */
+ul.dash { margin:4px 0 12px; padding-right:20px; padding-left:0; list-style:none; }
+ul.dash li { position:relative; padding-right:14px; margin-bottom:6px;
+  font-size:14px; line-height:1.7; break-inside:avoid; }
+ul.dash li::before { content:''; position:absolute; right:0; top:11px;
+  width:7px; height:2px; background:var(--accent); }
+ol.steps { margin:4px 0 12px; padding-right:22px; }
+ol.steps li { margin-bottom:7px; font-size:14px; line-height:1.7; break-inside:avoid; }
+
+/* صفحة الخاتمة */
+.ending { width:720px; height:1020px; break-before:page; overflow:hidden;
+  background:var(--hf); color:var(--ink); position:relative; }
+.ending-inner { position:absolute; inset:0; padding:80px 64px 60px; }
+.end-tag { font-family:'Cairo',sans-serif; font-weight:800; font-size:13px;
+  color:#cdb87a; }
+.end-title { font-family:'Cairo',sans-serif; font-weight:800; font-size:34px;
+  color:#fff; margin:8px 0 14px; line-height:1.3; }
+.end-lead { font-size:15px; line-height:1.85; color:#d9d5c8; max-width:560px;
+  text-align:justify; }
+.end-list { margin-top:26px; }
+.end-item { display:flex; gap:12px; margin-bottom:13px; break-inside:avoid; }
+.end-num { font-family:'Cairo',sans-serif; font-weight:800; font-size:15px;
+  color:#cdb87a; min-width:26px; line-height:1.6; }
+.end-txt { font-size:14px; line-height:1.65; color:var(--ink); }
+.end-foot { position:absolute; bottom:48px; left:64px; right:64px;
+  display:flex; justify-content:space-between; font-size:11.5px; color:#a49c85; }
+</style>
+</head>
+<body>
+<div class="front">
+  <div class="fp-line"></div>
+  <div class="fp-content">
+    <div class="fp-kicker">خطة تنظيم المحتوى · تهيئة القبول في <b>AdSense</b> · استهداف SEO</div>
+    <div class="hero-latin">Ausbijobs</div>
+    <div class="hero-ar">دليل الأوسبيلدونغ الشامل في ألمانيا</div>
+    <p class="fp-summary">وثيقة عمل شاملة لإعادة تنظيم مدونة ausbijobs.com: هيكل تصنيفي من ستة أقسام يغطي كل المقالات الحالية، روابط مخصصة وأوصاف ميتا جاهزة للنسخ، معالجة الازدواج، سد فجوات المحتوى، ومسار عملي واضح للقبول في AdSense وتصدّر نتائج البحث مع الحفاظ على الجمهور.</p>
+    <div class="fp-stats">
+      <div class="cstat"><div class="cstat-num">57</div><div class="cstat-lbl">مقالة منظمة وموثقة</div></div>
+      <div class="cstat"><div class="cstat-num">6</div><div class="cstat-lbl">تصنيفات رئيسية</div></div>
+      <div class="cstat"><div class="cstat-num">12</div><div class="cstat-lbl">مقالة مقترحة لسد الفجوات</div></div>
+      <div class="cstat"><div class="cstat-num">9</div><div class="cstat-lbl">أقسام تنفيذية في هذه الخطة</div></div>
+    </div>
+    <div class="fp-meta">المدونة: <b>Emplois</b> · www.ausbijobs.com &nbsp;<span>|</span>&nbsp; أكتوبر 2026</div>
+    <div class="fp-edition">CONTENT ORGANIZATION PLAN · V1.0</div>
+  </div>
+</div><div class="main-content">
+<div class="chapter-header first">
+  <div class="section-tag">القسم 01</div>
+  <h2 class="section-title">نظرة عامة على الوثيقة</h2>
+</div>
+<p class="lead">وثيقة العمل هذه هي المرجع التنفيذي لإعادة بناء مدونة <b>Emplois</b> على النطاق
+<b>ausbijobs.com</b> بشكل منظّم ومتوافق مع سياسات Google AdSense وإرشادات مشرفي المواقع.
+جاءت الحاجة إلى هذه الخطة لأن المدونة جمعت خلال أشهر قليلة عددًا كبيرًا من المقالات القيّمة
+دون هيكل تصنيفي واضح، وظهرت أزواج متقاربة من المقالات قد تُفسَّر على أنها تكرار، وهو ما
+تنصح إرشادات جوجل بتجنّبه صراحةً لأنه يضعف ترتيب الصفحات ويهدد القبول في الشبكة الإعلانية.</p>
+<p>في الأقسام التالية ستجد هوية لفظية كاملة جاهزة للنسخ، وهيكلاً من ستة تصنيفات تغطي كل
+المقالات الحالية الـ57 دون ترك أي مقالة بلا مكان، ثم روابطًا مخصصة وأوصاف بحث بحدود 150
+حرفًا لكل مقالة على حدة، وخطّة لسد فجوات المحتوى بمقالات جديدة تستهدف كلمات مفتاحية لم
+تُغطَّ بعد، وأخيرًا مسارًا عمليًا للقبول في AdSense وأكواد الميتا جاهزة للصق في القالب.
+كل رقم وطول في هذه الوثيقة تم التحقق منه آليًا قبل التسليم.</p>
+<div class="stat-grid">
+  <div class="stat"><div class="stat-num">57</div><div class="stat-lbl">مقالة حالية موزعة على 6 تصنيفات</div></div>
+  <div class="stat"><div class="stat-num">8</div><div class="stat-lbl">أزواج ازدواج مرصودة للدمج أو التفرقة</div></div>
+  <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">صفحات إلزامية قبل طلب AdSense</div></div>
+</div>
+<div class="callout"><b>خريطة الوثيقة:</b> القسم 2 هوية المدونة وأوصافها&nbsp;— القسم 3 هيكل التصنيفات&nbsp;—
+القسم 4 تنظيم المقالات مع الروابط والأوصاف&nbsp;— القسم 5 فجوات المحتوى والصفحات الإلزامية&nbsp;—
+القسم 6 استراتيجية قبول AdSense&nbsp;— القسم 7 استهداف SEO&nbsp;— القسم 8 الحفاظ على الجمهور&nbsp;—
+القسم 9 أكواد الميتا الجاهزة&nbsp;— الخاتمة قائمة تنفيذ من عشر خطوات.</div>
+<div class="chapter-header">
+  <div class="section-tag">القسم 02</div>
+  <h2 class="section-title">هوية المدونة: العنوان والوصفان</h2>
+</div>
+<p class="lead">الهوية اللفظية الموحدة هي أساس الثقة لدى الزائر ومحرك البحث معًا. عندما يتطابق
+عنوان المدونة مع وصفها المختصر ومع حسابات التواصل، تتراكم لدى جوجل إشارات قوية تربط العلامة
+بمجالها وتسرّع فهرسة المقالات الجديدة. هذه الهوية مدروسة بحيث لا يتجاوز العنوان 60 حرفًا
+(حد العرض الآمن في نتائج البحث)، ولا يتجاوز الوصف القصير 80 حرفًا (حد إعدادات بلوجر)،
+ويقع الوصف الكبير في نطاق 500 حرف المطلوب.</p>
+
+<h3 class="sub">عنوان المدونة (لإعدادات العنوان ووسم title)</h3>
+<div class="card">
+  <div class="card-label">العنوان المعتمد — 47 حرفًا</div>
+  <div class="card-value">Ausbijobs | دليل الأوسبيلدونغ الشامل في ألمانيا</div>
+  <div class="card-note">يدمج اسم العلامة Ausbijobs مع الكلمة المفتاحية الأهم «الأوسبيلدونغ في ألمانيا»، ويظهر كاملًا في نتائج البحث دون قص. يُكتب في: إعدادات بلوجر ← العنوان، وفي وسم &lt;title&gt; بعد اسم المدونة يُفضَّل إلحاق اسم المقالة المفصولة بعلامة | .</div>
+</div>
+
+<h3 class="sub">الوصف القصير — 80 حرفًا (الحد 80)</h3>
+<div class="card">
+  <div class="card-value" style="font-size:15.5px;">دليلك العربي الشامل للأوسبيلدونغ في ألمانيا: مهن ورواتب وتأشيرة ولغة وحياة يومية</div>
+  <div class="card-note">يوضع في: إعدادات بلوجر ← تفعيل «وصف البحث» ثم لصقه في حقل وصف المدونة، ويُستخدم نفسه في وصف الموقع عند تسجيل Google Search Console، وفي السيرة التعريفية لحسابات التواصل حتى تتطابق الإشارات.</div>
+</div>
+
+<h3 class="sub">الوصف الكبير — 507 حرفًا (الحد ~500)</h3>
+<div class="card">
+  <div class="card-value" style="font-size:14.5px; font-weight:500; font-family:'Tajawal';">Ausbijobs هو دليلك العربي المتخصص في التدريب المهني (Ausbildung) في ألمانيا. نقدم خارطة طريق كاملة من الصفر حتى توقيع العقد: أنواع الأوسبيلدونغ والمهن المطلوبة والرواتب الرسمية، خطوات التقديم وكتابة السيرة الذاتية وخطاب التحفيز، إجراءات التأشيرة والحساب المصرفي المغلق، دروساً مجانية في اللغة الألمانية من A1 حتى B2 مع ملخصات PDF، ونصائح عملية عن السكن والتأمين الصحي والحياة اليومية. هدفنا أن نجعل رحلتك نحو التدريب المهني في ألمانيا أوضح وأسهل، بمحتوى عربي أصلي محدّث سنوياً يستند إلى مصادر رسمية ألمانية.</div>
+  <div class="card-note">يوضع في: صفحة «من نحن» كفقرة افتتاحية، وحقل Bio لصفحة الفيسبوك، وقيمة description داخل كود JSON-LD في القسم 9 من هذه الوثيقة. لا تكرر حرفيًا بين الموقعين كافة؛ اجعل نسخة صفحة من نحن تبدأ بهذه الفقرة ثم توسع بها بذكاء.</div>
+</div>
+
+<div class="callout"><b>قرار العلامة:</b> اعتَمد «Ausbijobs» اسمًا ظاهرًا موحدًا في الهيدر
+والفافيكون وحسابات التواصل لأنه يجمع Ausbildung وJobs في كلمة واحدة سهلة الحفظ، ويُذكر
+اسم Emplois داخل صفحة «من نحن» كاسم المشروع المؤسس إن رغبت في الحفاظ على الاستمرارية مع
+القنوات القديمة. التوحيد ضروري لأن محركات البحث تربط الإشارات الاجتماعية بالعلامة، وأي
+تضارب في الأسماء يشتت هذه الإشارات ويؤخر تصدّر النتائج.</div>
+<div class="chapter-header">
+  <div class="section-tag">القسم 03</div>
+  <h2 class="section-title">هيكل التصنيفات (Labels) — ستة أقسام</h2>
+</div>
+<p class="lead">بنية التصنيفات ليست تفصيلاً شكليًا؛ فهي التي تحدد كيف يفهم الزائر الجديد
+مدونة خلال أول ثلاثين ثانية، وكيف يزحف جوجل إلى عمق الموقع عبر صفحات الأرشيف. اعتمدنا ستة
+تصنيفات كبرى تغطي رحلة الزائر كاملة: من «ما هو الأوسبيلدونغ؟» حتى الاستقرار اليومي في
+ألمانيا، مع تجنّب كل من التفتت (عشرات التصنيفات التي تضعف كل صفحة أرشيف) والتجاذب (ثلاثة
+تصنيفات تختنق بأكثر من عشرين مقالة).</p>
+<table class="keep">
+<thead><tr><th style="width:26%;">التصنيف</th><th>نطاقه</th><th style="width:14%;">الحجم</th></tr></thead>
+<tbody>
+<tr><td><b>دليل البداية والأساسيات</b></td><td>أساسيات الأوسبيلدونغ وخارطة الطريق والاختيار الصحيح بين المسارات</td><td style='text-align:center;white-space:nowrap;'>8 مقالة</td></tr>
+<tr><td><b>التقديم والملف</b></td><td>الوثائق والسيرة الذاتية وخطاب التحفيز والمقابلة والعقد</td><td style='text-align:center;white-space:nowrap;'>10 مقالة</td></tr>
+<tr><td><b>التأشيرة والبنك والإقامة</b></td><td>فيزا الأوسبيلدونغ والحساب المغلق والإقامة بعد التخرج</td><td style='text-align:center;white-space:nowrap;'>6 مقالة</td></tr>
+<tr><td><b>اللغة الألمانية</b></td><td>دروس A1 إلى B2 مع ملخصات PDF مجانية وتطبيقات التعلم</td><td style='text-align:center;white-space:nowrap;'>14 مقالة</td></tr>
+<tr><td><b>المهن والرواتب والعروض</b></td><td>المهن المطلوبة والرواتب الرسمية وعروض الشركات حسب القطاع</td><td style='text-align:center;white-space:nowrap;'>15 مقالة</td></tr>
+<tr><td><b>الحياة في ألمانيا</b></td><td>السكن والتأمين الصحي والعادات والقوانين اليومية</td><td style='text-align:center;white-space:nowrap;'>4 مقالة</td></tr>
+
+</tbody></table>
+<div class="callout"><b>قواعد استخدام التصنيفات في بلوجر:</b> اربط كل مقالة بتصنيف رئيسي
+واحد حصراً حسب جدول القسم 4، وأضف تصنيفًا ثانويًا واحدًا كحد أقصى عندما تكون المقالة جسرًا
+طبيعيًا بين قسومين (مثل درس مفردات التمريض: أساسه «اللغة الألمانية» وثانويه «Mangelberufe»).
+اجعل أسماء التصنيفات بالعربية كما هي أعلاه تمامًا في كل مقالة، لأن اختلاف حرف واحد ينشئ
+تصنيفًا وهميًا جديدًا ويشتت الأرشيف. أخيرًا، لا تترك أي مقالة بلا تصنيف؛ فالمقالات غير
+المصنفة تفقد فرصة الظهور في صفحات الأرشيف والروابط الداخلية.</div>
+<p><b>إجمالي التغطية:</b> 57 مقالة موزعة، لا توجد أي مقالة خارج التصنيفات الستة، ولا
+أي تصنيف يتجاوز خمس عشرة مقالة، وهو توزيع متوازن يحافظ على قوة كل صفحة أرشيف.</p>
+<div class="chapter-header">
+  <div class="section-tag">القسم 04</div>
+  <h2 class="section-title">تنظيم المقالات: الروابط والأوصاف الجاهزة</h2>
+</div>
+<p class="lead">هذا هو قلب الوثيقة: كل مقالة من مقالات المدونة الـ57 موثقة هنا بعنوانها
+الأصلي، وبالرابط المخصص المقترح لها (Custom Permalink)، وبوصف بحث جاهز ضمن نطاق 150 حرفًا.
+طريقة الاستخدام بسيطة: افتح المقالة في محرر بلوجر، من الإعدادات الجانبية الصق الرابط في حقل
+«رابط مخصص» بعد حذف الامتداد .html، ثم الصق الوصف في حقل «وصف البحث». الوصف كُتب ليكون
+ملخصًا مقنعًا يحمل الكلمات المفتاحية الطبيعية للنتيجة، لأن جوجل غالبًا يعرضه أسفل العنوان
+عندما يطابق نية الباحث، وما تجاوز حدود 155 حرفًا يُقتطع عادة في نتائج الجوال.</p><h3 class="cat-h">دليل البداية والأساسيات</h3><div class="cat-count">8 مقالة — أساسيات الأوسبيلدونغ وخارطة الطريق والاختيار الصحيح بين المسارات</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">ما هو Ausbildung بالضبط؟</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">what-is-ausbildung-germany.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>شرح مبسط لمفهوم التدريب المهني الأوسبيلدونغ في ألمانيا: نظرياً وعملياً، مدته، شروطه، ومزاياه للعرب الراغبين في مهنة مستقبلية آمنة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الفرق بين Ausbildung و Studium في ألمانيا: أيهما تختار؟</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-vs-studium-differences.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>مقارنة عملية بين التدريب المهني والدراسة الجامعية في ألمانيا من حيث المدة والراتب وفرص العمل، لمساعدتك على اختيار المسار الأنسب لمستقبلك.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">خارطة الطريق الكاملة: من التخطيط حتى أول يوم فـ Ausbildung 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-roadmap-full-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>خارطة طريق متسلسلة للتقديم على الأوسبيلدونغ: من تعلم اللغة وإعداد الملف حتى السفر وأول يوم تدريب، بجدول زمني واقعي لكل مرحلة في 2026.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">قائمة تحقق شاملة للأوسبيلدونغ 2026: كل ما يجب فعله قبل الوصول إلى ألمانيا وبعده</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-complete-checklist-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>قائمة تحقق تفصيلية تنظم رحلتك إلى ألمانيا: الوثائق، اللغة، التأشيرة، السكن، والتأمين، مع خطوات ما قبل السفر وما بعد الوصول خطوة بخطوة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مراحل الأوسبيلدونغ في ألمانيا خطوة بخطوة: الدليل الشامل 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-stages-step-by-step-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>تعرّف على مراحل الأوسبيلدونغ بالترتيب: البحث عن التدريب، التقديم، العقد، التأشيرة، السنتان العمليتان، والامتحان النهائي مع نصائح للنجاح.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">10 أخطاء شائعة يرتكبها المتقدمون على Ausbildung (وكيف تتجنبها) 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-common-mistakes-avoid-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أبرز عشرة أخطاء تفقد المتقدمين العرب فرص الأوسبيلدونغ: من السيرة الذاتية الضعيفة إلى التأخر في التقديم، مع حلول عملية لتجنب الرفض.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">كيف تبحث عن عمل في ألمانيا؟ دليل شامل خطوة بخطوة (2026)</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">how-to-find-job-germany-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل البحث عن عمل في ألمانيا للمقيمين والوافدين: مواقع التوظيف الرسمية، كتابة الطلب، والتقديم الصحيح وفق عادات سوق العمل الألماني.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">Chancenkarte ألمانيا 2026: الشروط والخطوات الكاملة</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">chancenkarte-germany-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>شرح بطاقة الفرص Chancenkarte الألمانية بنظام النقاط الجديد: شروط المؤهلات واللغة والمال اللازمة، وخطوات التقديم للحصول على تأشيرة البحث عن عمل في ألمانيا.</p>
+</div><h3 class="cat-h">التقديم والملف</h3><div class="cat-count">10 مقالة — الوثائق والسيرة الذاتية وخطاب التحفيز والمقابلة والعقد</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">كل مجالات Ausbildung في ألمانيا 2026 + إيميلات حقيقية للشركات حسب كل مجال</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-fields-company-emails-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>قائمة شاملة بمجالات الأوسبيلدونغ في ألمانيا مع بريدات إلكترونية حقيقية لشركات كل مجال، لتقديم طلباتك مباشرة وتزيد فرص الرد الإيجابي.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أهم الوثائق المطلوبة للتقديم على Ausbildung في ألمانيا 2026 (Checklist كاملة)</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-application-documents-checklist.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>قائمة كاملة بوثائق التقديم على الأوسبيلدونغ: الشهادات مترجمة، السيرة، خطاب التحفيز، وإثبات اللغة، مع نصائح لتنسيق ملف احترافي مقبول.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">كيف تكتب Lebenslauf (سيرة ذاتية ألمانية) مقبول 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">lebenslauf-german-cv-guide-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>طريقة كتابة السيرة الذاتية الألمانية Lebenslauf بالنموذج الجدولي المعتمد: الأقسام، الصورة، الترتيب الزمني، والعبارات التي تلاحظها الشركات.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">شنو هي Motivationsschreiben ولماذا مهمة بزاف</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">motivationsschreiben-cover-letter-guide.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل كتابة خطاب التحفيز Motivationsschreiben بالألمانية: بناؤه، عباراته الجاهزة، وكيف تقنع الشركة في أول ثلاثة أسطر بمحتوى شخصي أصيل.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مقابلة العمل (Vorstellungsgespräch)</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">vorstellungsgespraech-job-interview.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>كل ما تحتاجه للنجاح في مقابلة العمل الألمانية: التحضير المسبق، اللباس المناسب، لغة الجسد، والأسئلة النموذجية مع إجابات جاهزة تمنحك ثقة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أهم أسئلة مقابلة Ausbildung وكيف تجاوب عليها 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-interview-questions-answers.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أسئلة مقابلات الأوسبيلدونغ الأكثر تكراراً مع نماذج إجابات بالألمانية: لماذا هذا المجال، نقاط قوتك، وخططك المستقبلية، ونصائح ربح الإعجاب.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عقد التدريب المهني في ألمانيا Ausbildungsvertrag – أهم 8 بنود يجب معرفتها قبل التوقيع</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildungsvertrag-contract-8-clauses.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>اقرأ عقد الأوسبيلدونغ بوعي قبل توقيعه: مدة التجربة، الراتب، الإجازات، ساعات العمل، ومدة الإشعار، مع تحذيرات من البنود غير القانونية.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">قائمة كاملة: جهات اتصال رسمية وبريدات حقيقية للتقديم على Ausbildung في ألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-official-contacts-emails-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل جهات الاتصال الرسمية في ألمانيا: Arbeitsagentur وغرف الصناعة والتجارة وبريدات مؤسسات التدريب، للسؤال والتقديم من مصادر موثوقة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">خدمة تحضير ملف Bewerbung كامل ومقبول للتقديم على Ausbildung 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">bewerbung-preparation-service-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>خدمة احترافية لإعداد ملف التقديم الألماني كاملاً: سيرة ذاتية جدولية، خطاب تحفيز مخصص لكل عرض، ومراجعة الوثائق بمعايير الشركات الألمانية.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">كيف تتقدم على عرض Ausbildung خطوة بخطوة 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">how-to-apply-ausbildung-offer-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>خطوات التقديم الصحيح على عرض أوسبيلدونغ: قراءة الإعلان بعناية، تخصيص الملف، آداب البريد الإلكتروني، والمتابعة بعد الإرسال لزيادة القبول.</p>
+</div><h3 class="cat-h">التأشيرة والبنك والإقامة</h3><div class="cat-count">6 مقالة — فيزا الأوسبيلدونغ والحساب المغلق والإقامة بعد التخرج</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">شنو هي فيزا Ausbildung</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-visa-explained-basics.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>تعريف مبسط بتأشيرة الأوسبيلدونغ وكل ما يخصها: لمن تمنح، شروطها الأساسية كالعقد ومستوى اللغة والمال، والفرق الواضح بينها وبين تأشيرات الدراسة والعمل.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">فيزا Ausbildung ألمانيا: الوثائق والخطوات الكاملة 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-visa-documents-steps-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل طلب تأشيرة الأوسبيلدونغ كاملاً: قائمة الوثائق المطلوبة من السفارة، حجز الموعد، الرسوم، مدة الانتظار، ونصائح لاجتياز المقابلة بثقة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الحساب المغلق Sperrkonto لطلاب الأوسبيلدونغ في ألمانيا 2026: كل ما تحتاج معرفته</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">sperrkonto-blocked-account-guide-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>كل ما يخص الحساب المصرفي المغلق Sperrkonto: المبلغ المطلوب لعام 2026، أفضل البنوك، خطوات الفتح والتحويل، وطريقة السحب الشهري في ألمانيا.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">ماذا بعد Ausbildung في ألمانيا؟ الإقامة والعمل خطوة بخطوة 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">after-ausbildung-residence-work-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>ما بعد إنهاء الأوسبيلدونغ: تحويل الإقامة إلى إقامة عمل، الترقية في الشركة، إمكانية الدراسة، وطريقك التدريجي نحو الإقامة الدائمة في ألمانيا.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">كيفاش تدير حساب بنكي في ألمانيا؟ الدليل الكامل لطلاب الأوسبيلدونغ (2026)</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">bank-account-germany-management-guide.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل إدارة حسابك البنكي في ألمانيا: اختيار البنك المناسب، التحويلات، فاتورة الكهرباء والإيجار، وحماية نفسك من الرسوم الخفية كمتدرب أجنبي.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">كيفية فتح حساب بنكي في ألمانيا للطلاب والمتدربين 2026</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">open-bank-account-students-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>خطوات فتح حساب بنكي في ألمانيا للمتدربين: البنوك الرقمية والمحلية، الوثائق اللازمة، فتح الحساب عن بعد من بلدك، وتفعيل التحويلات الشهرية.</p>
+</div><h3 class="cat-h">اللغة الألمانية</h3><div class="cat-count">14 مقالة — دروس A1 إلى B2 مع ملخصات PDF مجانية وتطبيقات التعلم</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">درس شامل: اللغة الألمانية B2 – القواعد والمفردات الأساسية لطلاب Ausbildung في ألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-b2-full-course-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دورة كاملة في مستوى B2 الألماني للمتقدمين للأوسبيلدونغ: القواعد المتقدمة، مفردات المهنة والمقابلات، وتمارين تطبيقية تمهد لك امتحان Goethe.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الدرس الكامل لمستوى A1.1 الألماني: شرح مفصل + تمارين + PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a1-1-complete-lesson.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>ابدأ الألمانية من الصفر: درس A1.1 كامل بالأرقام والتحيات والأفعال الأساسية وحالة Akkusativ مع تمارين وملخص PDF مجاني للتحميل والمراجعة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الدرس الكامل لمستوى A1.2 الألماني: شرح مفصل + تمارين + PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a1-2-complete-lesson.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أكمل أساسياتك في A1.2: بناء الجمل، حالة Akkusativ بتفصيل، الأفعال الشاذة، وتمارين محلولة مع PDF مجاني يغنيك عن أي كتاب خارجي للمبتدئين.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الدرس الكامل لمستوى A2.1 الألماني: شرح مفصل + تمارين + PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a2-1-complete-lesson.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>درس A2.1 الكامل: حالة Dativ، الماضي البسيط Praeteritum، وأدوات الربط، بشرح عربي واضح وتمارين تطبيقية وملخص PDF مجاني لتثبيت القواعد.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الدرس الكامل لمستوى A2.2 الألماني: شرح مفصل + تمارين + PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a2-2-complete-lesson.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>تعلم في A2.2: أدوات weil و dass، الأفعال الانعكاسية، والجمل المركبة، مع شرح موسع وتمارين تطبيقية وملخص PDF مجاني جاهز للطباعة والمراجعة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الدرس الكامل لمستوى B1.1 الألماني: شرح مفصل + تمارين + PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-b1-1-complete-lesson.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>درس B1.1 الكامل: حالة الإضافة Genitiv، الجمل الموصولة بالضمائر، ومفردات الحياة المهنية، مع تمارين وملخص PDF مجاني لمستوى B1 بالكامل.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">الدرس الكامل لمستوى B1.2 الألماني: شرح مفصل + تمارين + PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-b1-2-complete-lesson.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أتمم مستوى B1 في هذا الدرس الشامل: صيغة الشرط Konjunktiv II، الكلام غير المباشر، وتمارين محلولة مع PDF مجاني للمراجعة قبل الامتحان النهائي.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مستوى A1.1 الألماني: دليلك الكامل للانطلاقة الأولى + ملخص PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a1-1-starter-guide.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل الانطلاقة الأولى في الألمانية A1.1: الأبجدية، التحيات، ضمائر الفصل، والأفعال الشائعة، مع ملخص PDF مجاني يوفر عليك التشتت من اليوم الأول.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مستوى A1.2 الألماني: بناء الجمل الأساسية + ملخص PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a1-2-sentence-building.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>بناء الجمل الأساسية في A1.2 خطوة بخطوة: ترتيب الفعل، الأدوات، والنفي، بتمارين مبسطة وملخص PDF مجاني يعزز فهمك لقواعد مستوى المبتدئين.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مستوى A2.1 الألماني: حالة الجر والماضي البسيط + ملخص PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a2-1-dativ-praeteritum.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>تعمق في حالة الجر Dativ والماضي البسيط Praeteritum بمستوى A2.1: شرح مبسط بأمثلة يومية وتمارين تدريجية وملخص PDF مجاني للمراجعة السريعة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مستوى A2.2 الألماني: الجمل المركبة والفعل الانعكاسي + ملخص PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-a2-2-reflexive-verbs.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أتمم A2.2 مع الجمل المركبة والفعل الانعكاسي: شرح التركيب، قائمة أهم الأفعال الانعكاسية الشائعة، وتمارين مع ملخص PDF مجاني للتثبيت الدائم.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مستوى B1.1 الألماني: حالة الإضافة والجمل الموصولة + ملخص PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-b1-1-genitiv-relative-clauses.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>فهم حالة الإضافة Genitiv والجمل الموصولة في B1.1 بأسلوب عربي سهل: أمثلة واقعية، تمارين تدريجية، وملخص PDF مجاني لمراجعة ما قبل B1.2.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">مستوى B1.2 الألماني: صيغة الشرط والكلام غير المباشر + ملخص PDF مجاني</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">german-b1-2-konjunktiv-indirect-speech.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>إتقان صيغة الشرط Konjunktiv II والكلام غير المباشر في B1.2: قواعد واضحة وأمثلة من الحياة المهنية مع ملخص PDF مجاني لاجتياز امتحان B1 بثقة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أفضل تطبيقات تعلم اللغة الألمانية مجاناً 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">best-free-german-learning-apps-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أفضل التطبيقات المجانية لتعلم الألمانية في 2026: مقارنة بين الأشهر من حيث القواعد والنطق والاستعداد للامتحانات، واختيار الأنسب لمستواك وهدفك.</p>
+</div><h3 class="cat-h">المهن والرواتب والعروض</h3><div class="cat-count">15 مقالة — المهن المطلوبة والرواتب الرسمية وعروض الشركات حسب القطاع</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">المهن المطلوبة في ألمانيا 2026 (Mangelberufe): القائمة الجديدة وكيف تختارها لـ Ausbildung ديالك</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">mangelberufe-in-demand-list-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>قائمة المهن الناقصة Mangelberufe في ألمانيا لعام 2026 حسب القطاعات، ومعايير اختيار المهنة الأنسب لك بين الأجر وفرصة القبول والاستقرار.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أكثر التخصصات المطلوبة في ألمانيا 2026 (Mangelberufe) – فرصتك الحقيقية للحصول على Ausbildung</span><span class="dup-badge">ازدواج مرصود</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">top-mangelberufe-real-chances.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أكثر تخصصات الأوسبيلدونغ المطلوبة في 2026: نسب القبول الفعلية للأجانب، وشروط كل تخصص، لتوجه طلباتك إلى المهن ذات الفرص الحقيقية المتاحة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أفضل المهن المطلوبة في Ausbildung ألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">best-ausbildung-jobs-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>ترتيب أفضل تخصصات الأوسبيلدونغ للأجانب في 2026: التمريض، المعلوماتية، الميكانيك وغيرها، مع رواتبها ومستوى اللغة المطلوب ودرجة سهولة القبول.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">راتب التدريب المهني (Ausbildung) في ألمانيا 2026: الأرقام الرسمية حسب السنة والمهنة</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-salary-official-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>رواتب الأوسبيلدونغ الرسمية في 2026: الحد الأدنى القانوني للسنة الأولى حتى الثالثة، والفروق بين المهن والقطاعات، بأرقام موثقة من مصادر رسمية.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">جدول رواتب Ausbildung الشامل 2026: مقارنة كل التخصصات</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-salary-comparison-table-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>جدول مقارنة شامل لرواتب كل تخصصات الأوسبيلدونغ في 2026: من التمريض إلى المعلوماتية، بتفصيل سنوات التدريب والزيادات السنوية والمزايا الإضافية.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">Ausbildung Pflege 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-pflege-nursing-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل التدريب المهني في التمريض Pflege بألمانيا 2026: الشروط، مدة التدريب، الراتب الشهري، محتوى الدروس العملية والنظرية، وفرص الإقامة بعده.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung في التجارة والبيع بالتجزئة بألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">kaufmann-einzelhandel-offers-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>عروض أوسبيلدونغ التجارة والبيع بالتجزئة Kaufmann im Einzelhandel في 2026: شروط القبول، الراتب، وأفضل المتاجر الكبرى التي توظف المتدربين سنوياً.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung في البناء والتشييد بألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">maurer-construction-offers-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>عروض الأوسبيلدونغ في البناء والتشييد Maurer بألمانيا 2026: تخصصات الموقع، الرواتب المرتفعة، شروط العمل الميداني، والشركات الباحثة عن متدربين.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung بمستوى لغة ألمانية بسيط (B1 أو أقل) 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">ausbildung-offers-b1-language-level.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>فرص أوسبيلدونغ حقيقية بمستوى B1 أو أقل: قطاعات تقبل مبتدئي اللغة، طريقة التقديم عليها، وكيف تعوض ضعف اللغة بموقف قوي وواثق في المقابلة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أفضل المواقع للبحث عن عروض Ausbildung في ألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">best-ausbildung-search-portals-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أفضل المواقع الرسمية للبحث عن أوسبيلدونغ: Arbeitsagentur و Ausbildung.de وغيرها، مع طريقة استخدام كل موقع وكلمات البحث الأنسب لتصفية النتائج.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung في الفندقة والمطاعم بألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">hotel-restaurant-offers-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أوسبيلدونغ الفندقة والمطاعم Hotelfach و Koch في 2026: عروض الفنادق الكبرى، الرواتب مع الإقامة والوجبات، وفرص التطور الوظيفي في قطاع السياحة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung في تكنولوجيا المعلومات بألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">fachinformatiker-it-offers-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>عروض أوسبيلدونغ المعلوماتية Fachinformatiker في 2026: تخصصاتها الثلاثة، رواتبها الأعلى من المتوسط، وشروط القبول في شركات التقنية الكبرى.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung في مجال الميكانيك والسيارات بألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">mechatroniker-automotive-offers-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>أوسبيلدونغ ميكانيك السيارات Mechatroniker في 2026: عروض ورش الوكالات الكبرى، الراتب التدريبي، ومتطلبات القبول من اللغة والمهارات اليدوية.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">عروض Ausbildung في مجال التمريض بألمانيا 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">pflegefachmann-nursing-offers-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>عروض التدريب في التمريض Pflegefachmann في 2026: المستشفيات ودور الرعاية، الراتب المرتفع، الطلب المتزايد، وشروط التسجيل للأجانب خطوة بخطوة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">أفضل الشركات الألمانية التي توفر عروض Ausbildung للأجانب 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">best-companies-foreigners-ausbildung.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>قائمة أفضل الشركات الألمانية المعتادة على توظيف متدربين أجانب: قطاعاتها، طريقة التقديم في مواقعها الرسمية، وتجارب نجاح يمكنك الاسترشاد بها.</p>
+</div><h3 class="cat-h">الحياة في ألمانيا</h3><div class="cat-count">4 مقالة — السكن والتأمين الصحي والعادات والقوانين اليومية</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">لماذا السكن أصعب مما تتوقع؟</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">why-housing-germany-is-hard.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>تحليل واقعي لأزمة السكن في ألمانيا وسبب صعوبته على الوافدين الجدد: الضغط على المدن الكبرى، الوثائق التي يطلبها المالك، وحلول عملية للتفاوض.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">السكن الطلابي في ألمانيا: كيف تجده وكم يكلف 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">student-housing-costs-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل السكن الطلابي في ألمانيا 2026: أنواع المساكن من السكن الجامعي إلى الغرف المشتركة، الأسعار حسب المدينة، وخطوات التقديم المبكر الناجحة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">التأمين الصحي في ألمانيا للمتدربين Ausbildung 2026</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">health-insurance-ausbildung-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>دليل التأمين الصحي Krankenvollversicherung للمتدربين: الفرق بين التأمين العام والخاص، من يدفع خلال التدريب، وكيف تغطي عائلتك بأقل تكلفة ممكنة.</p>
+</div>
+<div class="a-card">
+  <div class="a-top"><span class="a-title">دليل الحياة اليومية في ألمانيا للمبتدئين 2026: عادات وقوانين يجب معرفتها</span></div>
+  <div class="a-slug-row"><span class="a-key">الرابط المخصص</span>
+    <span class="chip" dir="ltr">daily-life-germany-beginners-2026.html</span></div>
+  <p class="a-desc"><b style="color:#8f8d86;font-weight:500;">وصف البحث: </b>كل عادات الحياة اليومية في ألمانيا التي تفاجئ الوافدين: فرز النفايات، قوانين السكوت، مواعيد المتاجر، وآداب الجيران، لتندمج بسرعة وبدون إحراج.</p>
+</div>
+<div class="callout warn"><b>لاحظ شارات «ازدواج مرصود»:</b> 16 مقالة تحمل هذه الشارة
+لأن لقبًا مشابهًا لها موجود في المدونة نفسها. هذه ليست مخالفة بحد ذاتها، لكنها أعلى أسباب
+ضعف الترتيب وضياع الإعلانات بين صفحتين متنافستين. القسم 5 يشرح لكل زوج خيار الدمج أو
+التفرقة بالتفصيل قبل أن تتقدم بطلب AdSense.</div>
+<div class="chapter-header">
+  <div class="section-tag">القسم 05</div>
+  <h2 class="section-title">فجوات المحتوى: الدمج والصفحات الإلزامية والمقترحات</h2>
+</div><h3 class="sub">5-1 أزواج الازدواج: دمج أو تفرقة</h3>
+<p>رصد الفحص الآلي ثمانية أزواج تشترك في النية البحثية نفسها أو شبه مشتركة. معالجتها قبل
+التقديم على AdSense شرط جودة، لأن إرشادات مشرفي المواقع تعتبر تكرار المحتوى أو توسيعه
+بلا قيمة مضافة إشارة سلبية. لكل زوج توصية محددة أدناه؛ نفّذها بإحدى طريقتين: إما دمج
+المحتوى الأضعف في الأقوى مع تحويل الرابط القديم (إعدادات ← أخطاء وإعادة توجيه ← توجيه
+مخصص)، أو التفرقة الجذرية بجعل كل مقالة تخدم نية بحث مختلفة تمامًا.</p>
+<div class="callout warn" style="margin-bottom:8px;"><b>درس A1.1: الدرس الكامل + دليل الانطلاقة — ادمجهما في صفحة واحدة قوية</b><br/>
+&nbsp;&nbsp;• الدرس الكامل لمستوى A1.1 الألماني: شرح مفصل + تمارين + PDF مجاني<br/>&nbsp;&nbsp;• مستوى A1.1 الألماني: دليلك الكامل للانطلاقة الأولى + ملخص PDF مجاني</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>درس A1.2: الدرس الكامل + بناء الجمل — ادمجهما في صفحة واحدة قوية</b><br/>
+&nbsp;&nbsp;• الدرس الكامل لمستوى A1.2 الألماني: شرح مفصل + تمارين + PDF مجاني<br/>&nbsp;&nbsp;• مستوى A1.2 الألماني: بناء الجمل الأساسية + ملخص PDF مجاني</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>درس A2.1: الدرس الكامل + Dativ والماضي — ادمجهما في صفحة واحدة قوية</b><br/>
+&nbsp;&nbsp;• الدرس الكامل لمستوى A2.1 الألماني: شرح مفصل + تمارين + PDF مجاني<br/>&nbsp;&nbsp;• مستوى A2.1 الألماني: حالة الجر والماضي البسيط + ملخص PDF مجاني</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>درس A2.2: الدرس الكامل + الأفعال الانعكاسية — ادمجهما في صفحة واحدة قوية</b><br/>
+&nbsp;&nbsp;• الدرس الكامل لمستوى A2.2 الألماني: شرح مفصل + تمارين + PDF مجاني<br/>&nbsp;&nbsp;• مستوى A2.2 الألماني: الجمل المركبة والفعل الانعكاسي + ملخص PDF مجاني</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>درس B1.1: الدرس الكامل + Genitiv والموصولة — ادمجهما في صفحة واحدة قوية</b><br/>
+&nbsp;&nbsp;• الدرس الكامل لمستوى B1.1 الألماني: شرح مفصل + تمارين + PDF مجاني<br/>&nbsp;&nbsp;• مستوى B1.1 الألماني: حالة الإضافة والجمل الموصولة + ملخص PDF مجاني</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>درس B1.2: الدرس الكامل + Konjunktiv — ادمجهما في صفحة واحدة قوية</b><br/>
+&nbsp;&nbsp;• الدرس الكامل لمستوى B1.2 الألماني: شرح مفصل + تمارين + PDF مجاني<br/>&nbsp;&nbsp;• مستوى B1.2 الألماني: صيغة الشرط والكلام غير المباشر + ملخص PDF مجاني</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>Mangelberufe: «القائمة الجديدة» و«فرصتك الحقيقية» — ادمجهما أو ميّز زاوية كل منهما جذرياً</b><br/>
+&nbsp;&nbsp;• المهن المطلوبة في ألمانيا 2026 (Mangelberufe): القائمة الجديدة وكيف تختارها لـ Ausbildung ديالك<br/>&nbsp;&nbsp;• أكثر التخصصات المطلوبة في ألمانيا 2026 (Mangelberufe) – فرصتك الحقيقية للحصول على Ausbildung</div>
+<div class="callout warn" style="margin-bottom:8px;"><b>الحساب البنكي: اجعل «فتح الحساب» للتأسيس و«إدارة الحساب» للاستخدام اليومي حصراً</b><br/>
+&nbsp;&nbsp;• كيفاش تدير حساب بنكي في ألمانيا؟ الدليل الكامل لطلاب الأوسبيلدونغ (2026)<br/>&nbsp;&nbsp;• كيفية فتح حساب بنكي في ألمانيا للطلاب والمتدربين 2026</div><h3 class="sub">5-2 الصفحات الإلزامية قبل التقديم على AdSense</h3>
+<p>فريق المراجعة في AdSense يبحث عن «موقع كامل جدير بالثقة» لا عن مجموعة مقالات فقط.
+الصفحات الست التالية هي أدنى الحد المقبول، وهي أيضًا التزام قانوني في ألمانيا بسبب
+GDPR. أنشئها كصفحات ثابتة (Pages) لا كمقالات، واربطها في تذييل الموقع كي يصل إليها
+الزاحف والمراجع من أول نظرة.</p><table class="keep">
+<thead><tr><th style="width:32%;">الصفحة</th><th>الغرض والالتزام</th></tr></thead>
+<tbody><tr><td style='width:32%;'><b>صفحة من نحن (Über uns)</b></td><td>تعرّف على المدونة وفريقها وهدفها وسياسة التحرير — عنصر ثقة أساسي يبحث عنه فريق مراجعة AdSense في كل موقع يراجعه.</td></tr><tr><td style='width:32%;'><b>صفحة اتصل بنا (Kontakt)</b></td><td>بريد إلكتروني فعلي ونموذج تواصل يعمل؛ غياب وسيلة التواصل الواضحة من أكثر أسباب رفض طلبات AdSense شيوعاً في المواقع العربية.</td></tr><tr><td style='width:32%;'><b>سياسة الخصوصية (Datenschutz)</b></td><td>إلزامية قانوناً في ألمانيا وفق GDPR، ويجب أن تذكر صراحة استخدام Google AdSense وملفات تعريف الارتباط وشركاء الإعلانات الثالثة.</td></tr><tr><td style='width:32%;'><b>إخلاء المسؤولية (Disclaimer)</b></td><td>تنويه بأن المحتوى إرشادي تعليمي وأن المعلومات الرسمية قد تتغير، مع تحديد حدود المسؤولية القانونية عن الاعتماد على المحتوى.</td></tr><tr><td style='width:32%;'><b>الشروط والأحكام (AGB)</b></td><td>قواعد استخدام الموقع وحقوق النسخ والاقتباس وحدود الاستفادة من المحتوى — تعزز المصداقية أمام المراجعين ومحركات البحث معاً.</td></tr><tr><td style='width:32%;'><b>سياسة التعليقات</b></td><td>تحديد ما هو مقبول في التعليقات وحقك في الحذف والتعديل؛ هذا يحميك من المحتوى المخالف الذي قد يسبب تقييد الإعلانات لاحقاً.</td></tr></tbody></table><h3 class="sub">5-3 اثنتا عشرة مقالة مقترحة لسد الفجوات</h3>
+<p>المقارنة بين تغطية المدونة الحالية وأكثر نوايا البحث المتكررة في مجتمع المقبلين على
+الأوسبيلدونغ كشفت مواضيع عالية الطلب غير مغطاة بعد. هذه المقترحات مرتبة بحسب قوتها في
+بناء الثقة وجلب زيارات جديدة، وكلها مصممة لتستمد روابط داخلية من مقالاتك الحالية مباشرة.
+جدولها الزمني للنشر موجود في القسم 8.</p><table>
+<thead><tr><th style="width:44%;">المقالة المقترحة</th><th>لماذا ضرورية</th></tr></thead>
+<tbody><tr><td style='width:44%;'><b>دليل الضمان الاجتماعي في ألمانيا: التأمين على التقاعد والبطالة للمتدربين</b></td><td>سد فجوة إجباريات العمل: البريد، الراتب الصافي بعد الاقتطاعات، وفهم رقم التأمين الاجتماعي</td></tr><tr><td style='width:44%;'><b>كيف تحوّل الأوراق المصرية/المغربية/الجزائرية إلى معادلة في ألمانيا؟</b></td><td>أعلى نية بحث في مجتمعك ولم تُغطَّ بعد: المعادلة والترجمة القانونية ونقاط الاعتراف</td></tr><tr><td style='width:44%;'><b>دليل النقل والمواصلات في ألمانيا: بطاقة Deutschlandticket للمتدربين</b></td><td>محتوى عملي عالي الطلب: الأسعار، الاشتراكات، وكيف يوفر المتدرب المال في التنقل اليومي</td></tr><tr><td style='width:44%;'><b>الضرائب في ألمانيا للمتدربين: هل تدفع ضريبة على راتب Ausbildung؟</b></td><td>كلمة مفتاحية شائعة بالعربية لم تغطها المدونة: Steuer، رقم الضريبة، والإعفاءات</td></tr><tr><td style='width:44%;'><b>دليل إجازات المتدرب: الراحة الأسبوعية والعطل والإجازة المرضية في Ausbildung</b></td><td>يكمل مقالة العقد بزاوية حقوق المتدرب ويجذب بحثاً معلوماتياً واسعاً</td></tr><tr><td style='width:44%;'><b>أخطاء تكلفك كثيراً في أول 30 يوماً بعد وصولك ألمانيا</b></td><td>محتوى تجربة شخصية يبني ثقة ويحقق تفاعلاً ومشاركة عالية في المجموعات</td></tr><tr><td style='width:44%;'><b>مقارنة المدن الألمانية للمتدربين: الإيجار والرواتب وفرص Ausbildung</b></td><td>بحث مقارن ممتاز لمحركات البحث: برلين ضد ميونخ ضد مدن شرق ألمانيا</td></tr><tr><td style='width:44%;'><b>دليل شامل للامتحان النهائي في الأوسبيلدونغ: كيف تنجح من أول مرة</b></td><td>يستهدف المتدربين الحاليين وليس المتقدمين فقط فيوسع جمهورك مع استمرارية القراءة</td></tr><tr><td style='width:44%;'><b>كيف تتعامل مع الرفض؟ 7 خطوات عملية بعد رسالة Absage</b></td><td>فجوة نفسية وعملية يمسها كل متقدم؛ محتوى داعم يبني ولاء جمهور طويل الأمد</td></tr><tr><td style='width:44%;'><b>شرح Berufsschule بالتفصيل: أيام المدرسة المهنية وأيام الشركة</b></td><td>تساؤل متكرر جداً في التعليقات والمنتديات العربية وغير مغطى في مقالاتك الحالية</td></tr><tr><td style='width:44%;'><b>دليل مختصر لحقوق المتدرب الأجنبي: التمييز، التحويل بين الشركات، والإبلاغ</b></td><td>يعزز مكانة المدونة كمرجع قانوني مبسط ويرفع جودة المحتوى في عيون AdSense</td></tr><tr><td style='width:44%;'><b>قاموس مصطلحات الأوسبيلدونغ: 100 كلمة ألمانية يجب أن تعرفها قبل السفر</b></td><td>محتوى مرجعي قابل للتحديث سنوياً ويجمع كلمات مفتاحية لغوية عالية البحث</td></tr></tbody></table>
+<div class="chapter-header">
+  <div class="section-tag">القسم 06</div>
+  <h2 class="section-title">استراتيجية القبول في Google AdSense</h2>
+</div>
+<p class="lead">سياسات برنامج AdSense تنص على أن الموقع الذي يعرض إعلانات جوجل يجب أن
+يقدّم محتوى أصليًا ذا قيمة مضافة، ويوفر تجربة تصفح سهلة، ويحافظ على توازن واضح بين الإعلانات
+والمحتوى. وبناءً على ما سبق أنشأته مدونتك من محتوى قيّم، فإن أقصر طريق إلى القبول هو
+إثبات هذه المبادئ بصورة ملموسة أمام فريق المراجعة: موقع منظم بتصنيفات واضحة، صفحات
+هوية كاملة، محتوى فريد بلا ازدواج، وسرعة تحميل مقبولة على الجوال.</p>
+
+<h3 class="sub">6-1 المحتوى الأصلي والقيمة المضافة</h3>
+<ul class="dash">
+<li>تجنّب صفحات البوابة والمحتوى القليل: كل صفحة في المدونة يجب أن تحل مشكلة حقيقية أو تجيب سؤالًا محددًا بدقة، لا أن توجد فقط لجذب زوار من كلمة مفتاحية.</li>
+<li>احذف أو ادمج ما رصدته في القسم 5-1 قبل التقديم؛ فوجود أزواج متشابهة وقت المراجعة أشيع سبب للرفض في المدونات العربية المشابهة لموقعك.</li>
+<li>لا تخدع برامج الزحف بكلمات مفتاحية عالية الدفع لا علاقة لها بالموضوع؛ المحتوى الذي يخالف هذا المبدأ يُستبعد من الإعلانات ويهدد الحساب كله.</li>
+<li>وضّح مصادر الأرقام (Arbeitsagentur، غرف الصناعة، BIBB) داخل المقالات؛ فالإسناد يرفع الجودة الملموسة ويميّزك عن المواقع المنقولة.</li>
+</ul>
+
+<h3 class="sub">6-2 مواضع الإعلانات المسموحة والممنوعة</h3>
+<p>بعد القبول، ضع الإعلانات بعيدًا عن عناصر التنقل حتى لا تُحسب نقرات خادعة، وحافظ على
+قاعدة ذهبية: الإعلان يُثري الصفحة ولا يطغى عليها. المواضع الآمنة والممنوعة واضحة:</p>
+<table class="keep">
+<thead><tr><th style="width:50%;">مواضع آمنة وموصى بها</th><th>مواضع ممنوعة بالمطلق</th></tr></thead>
+<tbody>
+<tr><td>بين الفقرة الثانية والثالثة من المقالة، ونهاية المقالة، وشريط جانبي واحد على الأكثر</td><td>النوافذ المنبثقة Popups ورسائل البريد الإلكتروني والبرامج</td></tr>
+<tr><td>مساحة إعلانية واحدة أعلى المقالة بشرط ألا تدفع المحتوى أسفل شاشة الجوال</td><td>صفحات الشكر بعد الاشتراك أو الشراء، وصفحات الخطأ 404، وصفحات البحث الداخلي</td></tr>
+<tr><td>الإعلانات المرنة المتجاوبة داخل حدود العرض الطبيعي للصفحة</td><td>بجانب أزرار التنقل أو روابط التحميل أو أي عنصر قابل للنقر بالخطأ</td></tr>
+</tbody></table>
+
+<h3 class="sub">6-3 مصادر الزيارات المشروعة</h3>
+<ul class="dash">
+<li>لا تطلب من جمهورك في مجموعات واتساب أو تيليجرام النقر على الإعلانات «لدعم المدونة»؛ هذا نص صريح على سياسة التشجيع غير المشروع وسبب إيقاف فوري.</li>
+<li>لا تضع صورًا أو أسهمًا بجانب الإعلانات توحي بأنها أزرار تنزيل أو تنقل؛ حتى الإشارة الغامضة تُحسب تضليلًا.</li>
+<li>النمو المشروع يأتي من نتائج البحث والمشاركة العفوية؛ سجّل الموقع في Search Console واعتمد على تصدّر النتائج بدل حيل الترويج.</li>
+</ul>
+
+<h3 class="sub">6-4 قائمة ما قبل التقديم (أسبوعان)</h3>
+<ol class="steps">
+<li>نفّذ دمج الأزواج الثمانية وأنشئ الصفحات الست الإلزامية واربطها بالتذييل.</li>
+<li>طبّق الروابط المخصصة وأوصاف البحث من القسم 4 على كل المقالات الـ57.</li>
+<li>تفعّل HTTPS مع إعادة التوجيه، وتأكد أن القالب متجاوب ويحمّل في أقل من ثلاث ثوانٍ على الجوال.</li>
+<li>أرسل خريطة الموقع sitemap.xml إلى Google Search Console واطلب فهرسة أهم عشر مقالات يدويًا.</li>
+<li>راجع إعدادات الخصوصية: أضف بند الكوكيز الإعلانية في صفحة Datenschutz قبل تفعيل الإعلانات.</li>
+<li>قدّم الطلب من حساب AdSense مرتبط بالبريد الرسمي للمدونة، ولا تعدّل القالب أثناء فترة المراجعة.</li>
+</ol>
+<div class="chapter-header">
+  <div class="section-tag">القسم 07</div>
+  <h2 class="section-title">استهداف SEO وتصدّر نتائج البحث</h2>
+</div>
+<p class="lead">التصدّر لم يعد يعتمد على تراكم الكلمات بل على مطابقة النية البحثية وبنية
+موقع واضحة. جدول الكلمات أدناه يعين لكل تصنيف نواة بحثية واحدة يتركز حولها النشر الداخلي،
+فلا تتنافس مقالتان من المدونة على الكلمة نفسها، وهو الخطأ الأشيع الذي يجعل جوجل يتردد في
+ترتيب أي منهما.</p>
+<table class="keep">
+<thead><tr><th style="width:23%;">التصنيف</th><th style="width:22%;">الكلمة النواة</th><th style="width:13%;">النية</th><th>كلمات مساندة</th></tr></thead>
+<tbody><tr><td><b>دليل البداية والأساسيات</b></td><td>ما هو الأوسبيلدونغ</td><td>معلوماتية</td><td>Ausbildung للمبتدئين، شروط الأوسبيلدونغ، Ausbildung بالعربية</td></tr>
+<tr><td><b>التقديم والملف</b></td><td>التقديم على Ausbildung</td><td>إجرائية</td><td>Lebenslauf نموذج، Motivationsschreiben، أسئلة مقابلة Ausbildung</td></tr>
+<tr><td><b>التأشيرة والبنك والإقامة</b></td><td>فيزا Ausbildung</td><td>إجرائية</td><td>Sperrkonto المبلغ، تأشيرة التدريب المهني، الإقامة بعد Ausbildung</td></tr>
+<tr><td><b>اللغة الألمانية</b></td><td>دروس اللغة الألمانية PDF</td><td>تعليمية</td><td>شرح A1.1، تمارين B1، Konjunktiv شرح، امتحان Goethe</td></tr>
+<tr><td><b>المهن والرواتب والعروض</b></td><td>راتب Ausbildung</td><td>استعلامية</td><td>Mangelberufe 2026، رواتب التمريض، عروض Ausbildung</td></tr>
+<tr><td><b>الحياة في ألمانيا</b></td><td>السكن في ألمانيا</td><td>استعلامية</td><td>تكلفة السكن، التأمين الصحي للمتدربين، الحياة اليومية في ألمانيا</td></tr>
+</tbody></table>
+
+<h3 class="sub">7-1 صيغة العنوان المثالي</h3>
+<p>اجعل العنوان من ستين حرفًا فأقل، وابدأه بالكلمة المفتاحية لا باسم المدونة، وألحق السنة
+بالمقالات الرقمية المتغيرة سنويًا (رواتب، قوائم مهن) كي تتجدد نضارتها في النتائج. استبدل
+الأسماء الغامضة بعبارات نتيجة صريحة: «أسئلة مقابلة Ausbildung وكيف تجاوب عليها 2026» أقوى
+من «مقابلة العمل» وحدها. وتجنّب العناوين المبالغ فيها التي تخالف محتوى الصفحة؛ فهي تنتهك
+مبادئ المحتوى المضلل لدى جوجل وتزيد معدل الارتداد الذي يتراجع به ترتيبك لاحقًا.</p>
+
+<h3 class="sub">7-2 الروابط المخصصة (Custom Permalinks)</h3>
+<ul class="dash">
+<li>إنجليزية قصيرة من ثلاث إلى خمس كلمات مفصولة بشرطات، والكلمة الأهم أولاً: ausbildung-salary-2026 لا salaire-ausbildung-final.</li>
+<li>لا تواريخ ولا حروف عربية في الرابط؛ فالرابط الإنجليزي يظهر صحيحًا في كل المتصفحات ويسهل نسخه في المنتديات.</li>
+<li>عند تعديل رابط مقالة مفهرسة، أضف إعادة توجيه 301 من الإعدادات ← أخطاء وإعادة توجيه حتى لا تفقد ترتيبها المكتسب.</li>
+</ul>
+
+<h3 class="sub">7-3 الربط الداخلي: خريطة الجسور</h3>
+<p>كل مقالة جديدة يجب أن تخرج برابطين داخليين وتستقبل رابطين على الأقل من مقالات أقدم،
+وفق هذه الجسور الطبيعية: مقالات التأشيرة ترتبط بالحساب المغلق وبقائمة الوثائق؛ مقالات
+الرواتب ترتبط بجدول المقارنة وبالمهن المطلوبة؛ دروس اللغة تترتب سلسلةً A1.1 حتى B2 مع
+زر «الدرس التالي» ثابت في النهاية؛ ومقالات العروض ترتبط بدليل التقديم خطوة بخطوة. هذا
+الشبكة ترفع عدد الصفحات في الجلسة، وهو من أقوى مؤشرات الجودة عند جوجل وعند AdSense معًا.</p>
+
+<h3 class="sub">7-4 إعدادات بلوجر التقنية الإلزامية</h3>
+<ol class="steps">
+<li>تفعيل «وصف البحث» من الإعدادات، وملء وصف كل مقالة من القسم 4 (يصبح وسم meta description تلقائيًا).</li>
+<li>تفعيل إعادة توجيه HTTPS وإصدار الشهادة، وضبط النطاق المخصص ausbijobs.com كأساسي.</li>
+<li>لصق ملف robots.txt المخصص من القسم 9، وتفعيل وسوم روبوتات العناوين الافتراضية: all للمقالات، noindex لصفحات الأرشيف والبحث.</li>
+<li>إضافة الموقع إلى Search Console عبر النطاق، وإرسال sitemap.xml ثم sitemap-pages.xml.</li>
+<li>إضافة نص بديل alt لكل صورة داخل المقالات وصفها بجملة عربية تحمل الكلمة المفتاحية طبيعيًا.</li>
+<li>تفعيل التعليقات بإشرافك (لا تلقائي) حفاظًا على جودة الصفحة أمام الزاحف.</li>
+</ol>
+<div class="chapter-header">
+  <div class="section-tag">القسم 08</div>
+  <h2 class="section-title">الحفاظ على الجمهور واستدامة النمو</h2>
+</div>
+<p class="lead">قبول AdSense ليس خط النهاية؛ فالإيرادات تتبع الزيارات المتكررة، والزائر
+العائد هو أرخص زيارة وأعلاها قيمة إعلانية. الجمهور العربي المهتم بالأوسبيلدونغ يتسم بمرحلة
+طويلة من القرار (ستة أشهر إلى سنة بين أول بحث والسفر)، لذا فإن المحتوى الذي يرافقه في كل
+مرحلة يبني ولاء لا تكسبه أي مقالة منفردة.</p>
+
+<h3 class="sub">8-1 جدول النشر الأسبوعي الثابت</h3>
+<table class="keep">
+<thead><tr><th style="width:18%;">اليوم</th><th>المهمة</th></tr></thead>
+<tbody><tr><td><b>الأحد</b></td><td>مقالة أساسية جديدة من قائمة الفجوات (القسم 5-3) بالترتيب</td></tr><tr><td><b>الأربعاء</b></td><td>درس لغة أو مقالة عروض أو مقالة حياة — تناوب أسبوعي</td></tr><tr><td><b>الجمعة</b></td><td>تحديث مقالة قديمة: بيانات 2027، روابط داخلية جديدة، أو ملحق PDF</td></tr></tbody></table>
+<p>ثلاث مهام أسبوعيًا إيقاع مثالي: يكفي لإشباع الزاحف دون إرهاقك، وثبات الموعد أهم من
+عددها؛ فالجمهور الذي يعرف أن الأحد يوم جديد يعود من تلقاء نفسه.</p>
+
+<h3 class="sub">8-2 إعادة تدوير المحتوى</h3>
+<ul class="dash">
+<li>حدّث المقالات الرقمية سنويًا في ديسمبر (رواتب 2027، Mangelberufe 2027) وغيّر السنة في العنوان والوصف؛ تحديث واحد ينعش مقالة كاملة.</li>
+<li>حوّل كل درس لغة إلى ملف PDF منسق تُتاح في نهاية المقالة مقابل الاشتراك في النشرة؛ ملفاتك ملخصاتك هي أقوى أداة جمع بريد لديك.</li>
+<li>أضف في نهاية كل مقالة صندوق «خطوتك التالية» يوجه القارئ للمقالة التالية منطقيًا في رحلته، فتتحول الزيارة المفردة إلى مسار قراءة كامل.</li>
+</ul>
+
+<h3 class="sub">8-3 المجتمع والمؤشرات</h3>
+<p>رد على كل تعليق خلال أربع وعشرين ساعة، وأضف نموذج «اقترح موضوعًا» في صفحة اتصل بنا حتى
+يكتب جمهورك قائمة مواضيعك القادمة بنفسه، وأنشئ قناة تيليجرام لنشر العروض العاجلة حصرًا حتى
+لا تتكرر في المدونة وتُفقد قيمتها. راقب ثلاثة مؤشرات شهريًا في Search Console وAnalytics:
+معدل العائدين (الهدف: تجاوز 30% خلال ستة أشهر)، والصفحات لكل جلسة (الهدف: 2.5 فأكثر)،
+ومعدل الارتداد (الهدف: أقل من 55%). عندما تتحسن هذه الثلاثية معًا فأنت تبني موقعًا يرتفع
+ترتيبه بذاته ويصمد أمام أي تحديث خوارزمي.</p>
+<div class="chapter-header">
+  <div class="section-tag">القسم 09</div>
+  <h2 class="section-title">أكواد الميتا الجاهزة للصق في القالب</h2>
+</div>
+<p class="lead">الأكواد التالية تكمّل قالب الميتا الذي يعتمده قالبك الحالي، وقد وُضعت القيم
+المرجعية بينها كعناصر نائبة واضحة (PLACEHOLDER) تستبدلها بمعرّفاتك الحقيقية قبل الحفظ. احرص
+على استبدال كل قيمة قبل الرفع؛ فوجود نص وهمي في القالب يُفسد مشاركة الروابط على فيسبوك
+وتويتر ويفقد المدونة إشارات اجتماعية قيّمة.</p>
+
+<h3 class="sub">9-1 وسوم الربط الاجتماعي المطلوبة</h3>
+<div class="code">&lt;!-- Required meta tags — انسخها كاملة قبل &lt;/head&gt; --&gt;
+&lt;meta content='FB_PAGE_ID_HERE' property='fb:pages'/&gt;
+&lt;meta content='FB_ADMIN_ID_HERE' property='fb:admins'/&gt;
+&lt;meta content='FB_APP_ID_HERE' property='fb:app_id'/&gt;
+&lt;meta content='DISQUS_SHORTNAME_HERE' id='disqus-id'/&gt;
+&lt;meta content='@ausbijobs' name='twitter:site'/&gt;
+&lt;meta content='@ausbijobs' name='twitter:creator'/&gt;
+
+&lt;b:if cond='data:view.isSingleItem'&gt;
+  &lt;meta content='https://www.facebook.com/FB_PAGE_ID_HERE'
+        property='article:publisher'/&gt;
+  &lt;meta content='https://www.facebook.com/AUTHOR_FB_URL_HERE'
+        property='article:author'/&gt;
+&lt;/b:if&gt;</div>
+
+<h3 class="sub">9-2 من أين تحصل على كل قيمة؟</h3>
+<table class="keep">
+<thead><tr><th style="width:19%;">الوسم</th><th style="width:31%;">القيمة الصحيحة</th><th>طريقة الحصول عليها</th></tr></thead>
+<tbody><tr><td style='white-space:nowrap;' dir='ltr'><b>fb:pages</b></td><td>معرّف صفحة الفيسبوك الرسمية للمدونة</td><td>من صفحتك: حول ← أسفل الصفحة ← معرّف الصفحة، أو من مصادر كشف المعرّف</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>fb:admins</b></td><td>معرّف حسابك الشخصي على فيسبوك</td><td>ابحث عن findmyfbid ثم الصق رابط حسابك؛ يمنحك صلاحية إدارة أزرار المشاركة</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>fb:app_id</b></td><td>معرّف تطبيق فيسبوك للمدونة</td><td>أنشئ تطبيقًا في developers.facebook.com (نوع Business) وانسخ App ID</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>disqus-id</b></td><td>الاسم المختصر لحساب Disqus إن استخدمته</td><td>لوحة Disqus ← موقعك ← Shortname؛ اتركه فارغًا إن كنت تستخدم تعليقات بلوجر</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>twitter:site</b></td><td>@ausbijobs — حساب المدونة على X</td><td>أنشئ الحساب بهذا الاسم إن لم يوجد ليطابق هوية الموقع</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>twitter:creator</b></td><td>حساب الكاتب الأساسي على X</td><td>إن كان الكاتب أنت فقط فأعده إلى @ausbijobs أو حسابك الشخصي</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>article:publisher</b></td><td>رابط صفحة الفيسبوك الكامل</td><td>يظهر داخل المقالات فقط (شرط isSingleItem) ليربط المنشورات المشتركة بصفحتك</td></tr><tr><td style='white-space:nowrap;' dir='ltr'><b>article:author</b></td><td>رابط صفحة/ملف الكاتب على فيسبوك</td><td>ضع رابط ملفك الشخصي أو صفحة الكتّاب إن كان الفريق أكثر من شخص</td></tr></tbody></table>
+
+<h3 class="sub">9-3 ملف robots.txt المخصص</h3>
+<div class="code">User-agent: Mediapartners-Google
+Disallow:
+
+User-agent: *
+Disallow: /search
+Allow: /
+
+Sitemap: https://www.ausbijobs.com/sitemap.xml</div>
+<p>يلصق في: الإعدادات ← الزحف والفهرسة ← robots.txt مخصص. السطر الأول يسمح لزاحف AdSense
+(Mediapartners-Google) بقراءة كل الصفحات كي تُعرض الإعلانات المناسبة، والثاني يحجب صفحات
+نتائج البحث الداخلي المكررة، ثم يعرّف خريطة الموقع للزواحف.</p>
+
+<h3 class="sub">9-4 بيانات منظمة Schema.org</h3>
+<div class="code">&lt;script type='application/ld+json'&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Ausbijobs",
+  "alternateName": "Emplois",
+  "url": "https://www.ausbijobs.com/",
+  "description": "دليلك العربي الشامل للأوسبيلدونغ في ألمانيا: مهن ورواتب وتأشيرة ولغة وحياة يومية",
+  "inLanguage": "ar",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.ausbijobs.com/search?q={query}",
+    "query-input": "required name=query"
+  }
+}
+&lt;/script&gt;</div>
+
+<h3 class="sub">9-5 خطوات التركيب والاختبار</h3>
+<ol class="steps">
+<li>من لوحة بلوجر: المظهر ← سهم بجوار «تخصيص» ← تحرير HTML، ثم ابحث عن &lt;/head&gt;.</li>
+<li>الصق الكتل الثلاث أعلاه قبل &lt;/head&gt; مباشرة، مع استبدال كل قيم PLACEHOLDER بقيمك.</li>
+<li>اضغط حفظ، ثم شارك رابط مقالة في رسالة خاصة على فيسبوك للتأكد من ظهور صورة المشاركة والعنوان صحيحين.</li>
+<li>افتح أداة النتائج الغنية في Search Console وأدخل رابط مقالة للتأكد من قراءة Schema دون أخطاء.</li>
+</ol></div>
+<div class="ending">
+  <div class="ending-inner">
+    <div class="end-tag">الخلاصة التنفيذية</div>
+    <div class="end-title">قائمة التنفيذ: عشر خطوات إلى المدونة الجاهزة</div>
+    <p class="end-lead">نفّذ الخطوات بالترتيب من أعلى إلى أسفل دون تخطي؛ كل خطوة تفتح
+    الباب للتي تليها، والترتيب مقصود بحيث يكتمل التأسيس التقني قبل طلب القبول، ويبدأ
+    النمو المستدام بعد القبول مباشرة. خصص أسبوعين كاملين للبنود من 1 إلى 8، ثم احتفظ
+    بإيقاع النشر الثابت من القسم 8 بعد التقديم.</p>
+    <div class="end-list"><div class="end-item"><div class="end-num">01</div><div class="end-txt">اعتمد العنوان والوصفين القصير والكبير في إعدادات بلوجر وحسابات التواصل.</div></div><div class="end-item"><div class="end-num">02</div><div class="end-txt">أنشئ التصنيفات الستة وأعد ربط كل مقالة بتصنيفها الوحيد كما في القسم 4.</div></div><div class="end-item"><div class="end-num">03</div><div class="end-txt">طبّق الروابط المخصصة على الـ57 مقالة مع إعادة توجيه للروابط القديمة المفهرسة.</div></div><div class="end-item"><div class="end-num">04</div><div class="end-txt">الصق وصف البحث المخصص لكل مقالة من القسم 4 دون تعديل يكسر حد 155 حرفًا.</div></div><div class="end-item"><div class="end-num">05</div><div class="end-txt">ادمج أزواج الازدواج الثمانية وأنشئ توجيهاتها من قسم 5-1.</div></div><div class="end-item"><div class="end-num">06</div><div class="end-txt">انشر الصفحات الإلزامية الست واربطها في تذييل الموقع.</div></div><div class="end-item"><div class="end-num">07</div><div class="end-txt">الصق أكواد الميتا الثلاثة قبل وسم الإغلاق للرأس مع استبدال القيم الوهمية.</div></div><div class="end-item"><div class="end-num">08</div><div class="end-txt">فعّل robots.txt وأرسل خريتي الموقع إلى Google Search Console.</div></div><div class="end-item"><div class="end-num">09</div><div class="end-txt">ابدأ جدول النشر الأسبوعي بمقالات الفجوات الاثنتي عشرة بالترتيب.</div></div><div class="end-item"><div class="end-num">10</div><div class="end-txt">قدّم طلب AdSense بعد اكتمال البنود التسعة السابقة كاملة.</div></div></div>
+    <div class="end-foot">
+      <span>Ausbijobs · www.ausbijobs.com</span>
+      <span>خطة تنظيم المحتوى · أكتوبر 2026</span>
+    </div>
+  </div>
+</div></body></html>
